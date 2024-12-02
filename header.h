@@ -9,7 +9,6 @@
 #define maxUser 6
 
 typedef char string[180];
-typedef char sBuff[20000];typedef char string[180];
 typedef char sBuff[20000];
 
 typedef struct Child* AddressChild;
