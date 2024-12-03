@@ -66,21 +66,18 @@ void omzetPrint(menu M[]);
 void readFromFile(string filename, menu M[]);
 
 
-// verrent 
-int countNota(AddressParent temp);
-void menuInputMenu(Multilist *L);
-
-void menuKasir(menu M[], Multilist *l, int count, int *nomorNota);
-void tambahPesanan(menu M[], Multilist *l, int count);
-void inputPesanan(menu M[], Multilist *l, int count, int *nomorNota);
+void menuKasir(menu M[], Multilist *l, int *nomorNota);
+void insertAllChild(Multilist l, AddressParent temp1, AddressParent temp2);
+void mergeNota(Multilist *l);
+void tambahPesanan(menu M[], Multilist *l);
+void inputPesanan(menu M[], Multilist *l, int *nomorNota);
 float countTotalHarga(AddressParent parent);
 DataChild makeDataChild(int idMenu, string nama, int jumlah, float harga);
 DataParent makeDataParent(int nomorNota, string tanggalNota, int nomorMeja, float total);
 void makeTanggal(string *tanggalNota);
 int countNota(AddressParent temp);
-int findIdMenu(menu M[], int count, int input);
-void mergeNota(Multilist *l);
-void insertAllChild(Multilist l, AddressParent temp1, AddressParent temp2);
+int findIdMenu(menu M[],int input);
+int findMejaKosong(Multilist l);
 
 //source Parent
 void createEmpty(Multilist *L);
