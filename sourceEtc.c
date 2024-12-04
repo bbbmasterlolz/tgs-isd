@@ -176,7 +176,7 @@ void insertAllChild(Multilist l, AddressParent temp1, AddressParent temp2){
         bool idSama = 0; 
         
         while(tempChild1 !=NULL){
-            if (tempChild1->dataChild.idMenu == temp->dataChild.idMenu) {
+            if (tempChild1->dataChild.idMenu == temp->dataChild.idMenu){
                 tempChild1->dataChild.jumlah += temp->dataChild.jumlah;
                 idSama = 1;
                 break;
@@ -269,6 +269,7 @@ void tambahPesanan(menu M[], Multilist *l){
 	}
 	
 }
+
 
 void inputPesanan(menu M[], Multilist *l, int *nomorNota){
 	if(findMejaKosong(*l)!=-1){
@@ -363,7 +364,6 @@ int countNota(AddressParent temp){
 	return 1 + countNota(temp->next);
 
 }
-
 int findIdMenu(menu M[], int input) {
 	int i;
     for(i = 0; i < maxMenu; i++) {
@@ -400,4 +400,3 @@ int findMejaKosong(Multilist l){
     }
     return -1;
 }
-
