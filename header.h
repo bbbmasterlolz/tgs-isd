@@ -118,4 +118,3 @@ void deleteLastChild(Multilist L, int idParent);
 void printChild(AddressChild child);
 void printAllChild(AddressParent parent);
 
-
