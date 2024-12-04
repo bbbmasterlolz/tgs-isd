@@ -77,6 +77,7 @@ DataParent makeDataParent(int nomorNota, string tanggalNota, int nomorMeja, floa
 void makeTanggal(string *tanggalNota);
 int countNota(AddressParent temp);
 int findIdMenu(menu M[],int input);
+int findNamaMenu(menu M[], string input);
 int findMejaKosong(Multilist l);
 
 //source Parent
