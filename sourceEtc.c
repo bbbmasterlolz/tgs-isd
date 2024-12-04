@@ -138,6 +138,7 @@ void readFromFile(string filename, menu M[]){
 }
 
 
+
 void menuKasir(menu M[], Multilist *l, int *nomorNota){
 	while(1){
 		int input;
@@ -306,7 +307,7 @@ void inputPesanan(menu M[], Multilist *l, int *nomorNota){
 				}
 			}else{
 				printf("\n[!] Nama Atau Id tidak ditemukan [!]");
-			}
+			}getch();
 		}while(strcmp(input, "0")!=0);
 	}else{
 		printf("\n[!] Mohon Maaf Tidak Ada Meja Yang Tersedia [!]");
