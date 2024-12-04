@@ -8,7 +8,7 @@ int main(int argc, char *argv[]) {
 	createEmpty(&L);
 	cred users[maxUser] = {{"admin", "admin"}, {"1", "1"}, {"brian", "1"}, {"damar", "2"}, {"verent", "3"}, {"alvin", "4"}};
 	cred temp;
-	int index_user = -1, count, nomorNota=0;
+	int index_user = -1, nomorNota=0;
 	string filename = "daftarMenu.txt";
 	
 	readFromFile(filename, M);
@@ -35,7 +35,7 @@ int main(int argc, char *argv[]) {
 			menuAdmin(M);
 			saveToFile(filename, M);
 		}else{
-			menuKasir(M, &L, count, &nomorNota);
+			menuKasir(M, &L, &nomorNota);
 		}
 	}
 	return 0;
