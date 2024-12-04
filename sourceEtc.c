@@ -125,6 +125,7 @@ void readFromFile(string filename, menu M[]){
     	strcpy(M[i].nama, "");
     	while(fscanf(file, "%s", sTemp)){
 			if(strcmp(sTemp, "|")==0){
+				M[i].nama[strlen(M[i].nama) - 1] = '\0';
 				break;
 			}else{
 				strcat(M[i].nama, sTemp);
