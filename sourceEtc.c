@@ -225,8 +225,8 @@ void mergeNota(Multilist *l){
 
 void tambahPesanan(menu M[], Multilist *l){
 	if(!isEmpty(*l)){
-		string tanggalNota, cek;
-		int input, index, banyak, cariNota;
+		string input, tanggalNota;
+		int index, banyak, cariNota;
 		printAll(*l);
 		printf("\nMasukkan Nomor Nota Yang Ingin Ditambah : ");scanf("%d", &cariNota);
 		if(findParent(*l, cariNota)!=NULL){
@@ -234,29 +234,33 @@ void tambahPesanan(menu M[], Multilist *l){
 			do{
 				system("cls");
 				menuPrint(M);
-				printf("\nMasukkan Nomor atau Nama Menu Yang Ingin Di Pesan: ");scanf("%d", &input);
-				index = findIdMenu(M, input);
+				printf("\nMasukkan Nomor atau Nama Menu Yang Ingin Di Pesan: ");gets(input);
+				if(sscanf(input, "%d", &index) == 1){
+		            index = findIdMenu(M, index);
+		        }else{
+		            index = findNamaMenu(M, input);
+		        }	
 		        if(index!=-1){
-		        	printf("\nMasukkan Banyak %syang ingin di Tambah : ", M[index].nama);scanf("%d", &banyak);
+		        	printf("\nMasukkan Banyak Pesanan : ");scanf("%d", &banyak);
 		        	while(banyak<1){
 		        		printf("\n\t[!] Tidak Boleh Lebih Kecil Dari 1 [!]\n");
-		        		printf("\nMasukkan Banyak %syang ingin di Tambah : ", M[index].nama);scanf("%d", &banyak);
+		        		printf("\nMasukkan Banyak Pesanan : ");scanf("%d", &banyak);
 					}
 					if(findChild(temp, M[index].idMenu)==NULL){
 						insertLastChild((*l), temp->dataParent.nomorNota, makeDataChild(M[index].idMenu, M[index].nama, banyak, M[index].harga));
 					}else{
 						temp->firstChild->dataChild.jumlah += banyak;
 					}
-					printf("\n\tApakah ada lagi yang ingin di pesan [N/Y] ");scanf("%s", cek);
-					if(strcmpi(cek,"n")==0){
+					printf("\n\tApakah ada lagi yang ingin di pesan [N/Y] ");scanf("%s", input);
+					if(strcmpi(input,"n")==0){
 						findParent(*l, temp->dataParent.nomorNota)->dataParent.Total = countTotalHarga(findParent(*l, temp->dataParent.nomorNota));
 						printParent(findParent(*l, temp->dataParent.nomorNota));
-						input = 0;
+						strcpy(input,"0");
 					}
 				}else{
 					printf("\n[!] Nama Atau Id tidak ditemukan [!]");
 				}
-			}while(input!=0);
+			}while(strcmp(input, "0")!=0);
 		}else{
 			printf("\n[!] Mohon Maaf Nota Tidak Ditemukan[!]");
 		}
@@ -266,40 +270,43 @@ void tambahPesanan(menu M[], Multilist *l){
 	
 }
 
-
 void inputPesanan(menu M[], Multilist *l, int *nomorNota){
 	if(findMejaKosong(*l)!=-1){
-		string tanggalNota, cek;
-		int index, banyak, input;
+		string input, tanggalNota;
+		int index, banyak;
 		(*nomorNota)++;
 		makeTanggal(&tanggalNota);
 		insertLastParent(&(*l), makeDataParent(*nomorNota, tanggalNota, findMejaKosong(*l), 0));
 		do{
 			system("cls");
 			menuPrint(M);
-			printf("\nMasukkan Nomor atau Nama Menu Yang Ingin Di Pesan: ");scanf("%d", &input);
-			index = findIdMenu(M, input);
+			printf("\nMasukkan Nomor atau Nama Menu Yang Ingin Di Pesan: ");gets(input);
+			if(sscanf(input, "%d", &index) == 1){
+	            index = findIdMenu(M,index);
+	        }else{
+	            index = findNamaMenu(M,  input);
+	        }	
 	        if(index!=-1){
-	        	printf("\nMasukkan Banyak %syang ingin di Pesanan : ", M[index].nama);scanf("%d", &banyak);
+	        	printf("\nMasukkan Banyak Pesanan : ");scanf("%d", &banyak);
 	        	while(banyak<1){
 	        		printf("\n\t[!] Tidak Boleh Lebih Kecil Dari 1 [!]\n");
-	        		printf("\nMasukkan Banyak %syang ingin di Pesanan : ", M[index].nama);scanf("%d", &banyak);
+	        		printf("\nMasukkan Banyak Pesanan : ");scanf("%d", &banyak);
 				}
 				if(findChild(findParent(*l, *nomorNota), M[index].idMenu)==NULL){
 					insertLastChild((*l), *nomorNota, makeDataChild(M[index].idMenu, M[index].nama, banyak, M[index].harga));
 				}else{
 					findChild(findParent(*l, *nomorNota), M[index].idMenu)->dataChild.jumlah += banyak;
 				}
-				printf("\n\tApakah ada lagi yang ingin di pesan [N/Y] ");scanf("%s", cek);
-				if(strcmpi(cek,"n")==0){
+				printf("\n\tApakah ada lagi yang ingin di pesan [N/Y] ");scanf("%s", input);
+				if(strcmpi(input,"n")==0){
 					findParent(*l, *nomorNota)->dataParent.Total = countTotalHarga(findParent(*l, *nomorNota));
 					printParent(findParent(*l, *nomorNota));
-					input = 0;
+					strcpy(input,"0");
 				}
 			}else{
 				printf("\n[!] Nama Atau Id tidak ditemukan [!]");
 			}
-		}while(input!=0);
+		}while(strcmp(input, "0")!=0);
 	}else{
 		printf("\n[!] Mohon Maaf Tidak Ada Meja Yang Tersedia [!]");
 	}
@@ -357,10 +364,20 @@ int countNota(AddressParent temp){
 
 }
 
-int findIdMenu(menu M[],int input) {
+int findIdMenu(menu M[], int input) {
 	int i;
     for(i = 0; i < maxMenu; i++) {
         if (M[i].idMenu == input) {
+            return i;
+        }
+    }
+    return -1;
+}
+
+int findNamaMenu(menu M[], string input) {
+	int i;
+    for( i = 0; i < maxMenu; i++) {
+        if (strcmpi(M[i].nama, input) == 0) {
             return i;
         }
     }
