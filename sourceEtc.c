@@ -223,7 +223,6 @@ void mergeNota(Multilist *l){
 }
 
 
-
 void tambahPesanan(menu M[], Multilist *l){
 	if(!isEmpty(*l)){
 		string input, tanggalNota;
@@ -260,7 +259,7 @@ void tambahPesanan(menu M[], Multilist *l){
 					}
 				}else{
 					printf("\n[!] Nama Atau Id tidak ditemukan [!]");
-				}
+				}gstch();
 			}while(strcmp(input, "0")!=0);
 		}else{
 			printf("\n[!] Mohon Maaf Nota Tidak Ditemukan[!]");
@@ -276,12 +275,13 @@ void inputPesanan(menu M[], Multilist *l, int *nomorNota){
 	if(findMejaKosong(*l)!=-1){
 		string input, tanggalNota;
 		int index, banyak;
-		(*nomorNota)++;
+		(*nomorNota) = (*nomorNota) + 1;
 		makeTanggal(&tanggalNota);
 		insertLastParent(&(*l), makeDataParent(*nomorNota, tanggalNota, findMejaKosong(*l), 0));
 		do{
 			system("cls");
 			menuPrint(M);
+			fflush(stdin);
 			printf("\nMasukkan Nomor atau Nama Menu Yang Ingin Di Pesan: ");gets(input);
 			if(sscanf(input, "%d", &index) == 1){
 	            index = findIdMenu(M,index);
@@ -311,8 +311,7 @@ void inputPesanan(menu M[], Multilist *l, int *nomorNota){
 		}while(strcmp(input, "0")!=0);
 	}else{
 		printf("\n[!] Mohon Maaf Tidak Ada Meja Yang Tersedia [!]");
-	}
-	
+	}	
 }
 
 float countTotalHarga(AddressParent parent){
