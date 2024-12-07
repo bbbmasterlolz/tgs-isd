@@ -1,15 +1,15 @@
-1 Ayam Bakar  | 20000.000000 0
-2 Nasi Putih  | 5000.000000 0
-3 Es Teh Manis  | 3500.000000 0
+1 Ayam Bakar | 20000.000000 0
+2 Nasi Putih | 5000.000000 0
+3 Es Teh Manis | 3500.000000 0
 4 Es Jeruk | 4000.000000 0
-5 Tahu Goreng  | 5000.000000 0
-6 Tempe Goreng  | 5000.000000 0
-7 Ayam Goreng  | 17000.000000 0
-8 Sambal Terasi  | 5000.000000 0
-9 Lalapan  | 3000.000000 0
-10 Lele Bakar  | 15000.000000 0
-11 Ikan Nila Goreng  | 25000.000000 0
-12 Ikan Gurame Bakar  | 40000.000000 0
-13 Sop Ayam  | 25000.000000 0
-14 Soto Ayam  | 23000.000000 0
-15 Ayam Penyet  | 26000.000000 0
+5 Tahu Goreng | 5000.000000 0
+6 Tempe Goreng | 5000.000000 0
+7 Ayam Goreng | 17000.000000 0
+8 Sambal Terasi | 5000.000000 0
+9 Lalapan | 3000.000000 0
+10 Lele Bakar | 15000.000000 0
+11 Ikan Nila Goreng | 25000.000000 0
+12 Ikan Gurame Bakar | 40000.000000 0
+13 Sop Ayam | 25000.000000 0
+14 Soto Ayam | 23000.000000 0
+15 Ayam Penyet | 26000.000000 0

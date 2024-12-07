@@ -10,6 +10,7 @@ int main(int argc, char *argv[]) {
 	cred temp;
 	int index_user = -1, nomorNota=0;
 	string filename = "daftarMenu.txt";
+	string saveMultiList = "savedata.txt";//untuk multi list
 	
 	readFromFile(filename, M);
 	
@@ -17,15 +18,18 @@ int main(int argc, char *argv[]) {
 		while(1){
 			system("cls");
 			printStartUp();
-			printf("\n\t[LOGIN]\n\n");
-			printf("username: "); fflush(stdin); gets(temp.user);
-			printf("password: "); fflush(stdin); gets(temp.pass);
+			printf("\n\t\t\t\t\t     %c%c%c%c%c%c%c%c%c%c%c%c%c%c%c\n", 201, 205, 205, 205, 205, 205, 205, 205, 205, 205, 205, 205, 205, 187); // Top border using extended ASCII
+		    printf("\t\t\t\t\t-----%c   Login    %c----\n", 186, 186); // Left and right borders using extended ASCII
+		    printf("\t\t\t\t\t     %c%c%c%c%c%c%c%c%c%c%c%c%c%c%c\n", 200, 205, 205, 205, 205, 205, 205, 205, 205, 205, 205, 205, 205, 188); // Bottom border using extended ASCII
+
+			printf("\t\t\t\t\tusername: "); fflush(stdin); gets(temp.user);
+			printf("\t\t\t\t\tpassword: "); fflush(stdin); gets(temp.pass);
 			index_user = cekCred(users, temp);
 			if(index_user == -1){
 				printf("\n [Gagal Login]");
 				getch();
 			}else{
-				printf("\n [Halo %s]", temp.user);
+				printf("\n\t\t\t\t\t [Halo %s]", temp.user);
 				getch();
 				break;
 			}
@@ -35,7 +39,7 @@ int main(int argc, char *argv[]) {
 			menuAdmin(M);
 			saveToFile(filename, M);
 		}else{
-			menuKasir(M, &L, &nomorNota);
+			menuKasir(M, &L, &nomorNota, saveMultiList);
 		}
 	}
 	return 0;

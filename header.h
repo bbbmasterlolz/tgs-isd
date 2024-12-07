@@ -8,7 +8,7 @@
 #define maxMenu 15
 #define maxUser 6
 
-typedef char string[180];
+typedef char string[200];
 typedef char sBuff[20000];
 
 typedef struct Child* AddressChild;
@@ -59,24 +59,31 @@ typedef struct{
 //source etc
 void printStartUp();
 void menuAdmin(menu M[]);
+
 void menuPrint(menu M[]);
 void saveToFile(string filename, menu M[]);
+
 void editMenu(menu M[]);
 void omzetPrint(menu M[]);
+
 void readFromFile(string filename, menu M[]);
+void menuKasir(menu M[], Multilist *l, int *nomorNota, string filename);
 
-
-void menuKasir(menu M[], Multilist *l, int *nomorNota);
 void insertAllChild(Multilist l, AddressParent temp1, AddressParent temp2);
 void mergeNota(Multilist *l);
+
 void tambahPesanan(menu M[], Multilist *l);
 void inputPesanan(menu M[], Multilist *l, int *nomorNota);
+
 float countTotalHarga(AddressParent parent);
 DataChild makeDataChild(int idMenu, string nama, int jumlah, float harga);
+
 DataParent makeDataParent(int nomorNota, string tanggalNota, int nomorMeja, float total);
 void makeTanggal(string *tanggalNota);
+
 int countNota(AddressParent temp);
 int findIdMenu(menu M[],int input);
+
 int findNamaMenu(menu M[], string input);
 int findMejaKosong(Multilist l);
 
@@ -104,8 +111,6 @@ bool haveChild(AddressParent ap);
 
 void deleteAllChild(AddressParent parent);
 
-//source child
-//DataChild makeDataChild(string namaPasien, int sisaHari);
 
 AddressChild alokasiChild(DataChild data);
 AddressChild findChild(AddressParent parent, int idMenu);
@@ -118,4 +123,15 @@ void deleteLastChild(Multilist L, int idParent);
 
 void printChild(AddressChild child);
 void printAllChild(AddressParent parent);
+
+
+//save and load data from a file using multi list
+void writeToFileMultiList(Multilist list, string filename);
+void readFromFileMultiList(Multilist* list, const char* filename);
+
+
+//warna
+void setColor(int color);//set colour sesuai parameter
+void resetColor();
+void loadingBar();
 

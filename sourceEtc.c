@@ -2,15 +2,85 @@
 
 
 void printStartUp(){
-	printf("\n"
-	"$$\\                       $$$$$$\\                                     $$\\            \n"
-	"$$ |                     $$  __$$\\                                    $$ |           \n"    
-	"$$ |      $$$$$$\\        $$ /  \\__| $$$$$$\\  $$$$$$\\  $$$$$$$\\   $$$$$$$ | $$$$$$\\   \n"        
-	"$$ |      \\____$$\\       $$ |$$$$\\ $$  __$$\\ \\____$$\\ $$  __$$\\ $$  __$$ |$$  __$$\\  \n"        
-	"$$ |      $$$$$$$ |      $$ |\\_$$ |$$ |  \\__|$$$$$$$ |$$ |  $$ |$$ /  $$ |$$$$$$$$ | \n"        
-	"$$ |     $$  __$$ |      $$ |  $$ |$$ |     $$  __$$ |$$ |  $$ |$$ |  $$ |$$   ____| \n"
-	"$$$$$$$$\\\\$$$$$$$ |      \\$$$$$$  |$$ |     \\$$$$$$$ |$$ |  $$ |\\$$$$$$$ |\\$$$$$$$\\  \n"       
-	"\\________|\\_______|       \\______/ \\__|      \\_______|\\__|  \\__| \\_______| \\_______| \n");
+//	printf("\n"
+//	"\t\t$$\\                       $$$$$$\\                                     $$\\            \n"
+//	"\t\t$$ |                     $$  __$$\\                                    $$ |           \n"    
+//	"\t\t$$ |      $$$$$$\\        $$ /  \\__| $$$$$$\\  $$$$$$\\  $$$$$$$\\   $$$$$$$ | $$$$$$\\   \n"        
+//	"\t\t$$ |      \\____$$\\       $$ |$$$$\\ $$  __$$\\ \\____$$\\ $$  __$$\\ $$  __$$ |$$  __$$\\  \n"        
+//	"\t\t$$ |      $$$$$$$ |      $$ |\\_$$ |$$ |  \\__|$$$$$$$ |$$ |  $$ |$$ /  $$ |$$$$$$$$ | \n"        
+//	"\t\t$$ |     $$  __$$ |      $$ |  $$ |$$ |     $$  __$$ |$$ |  $$ |$$ |  $$ |$$   ____| \n"
+//	"\t\t$$$$$$$$\\\\$$$$$$$ |      \\$$$$$$  |$$ |     \\$$$$$$$ |$$ |  $$ |\\$$$$$$$ |\\$$$$$$$\\  \n"       
+//	"\t\t\\________|\\_______|       \\______/ \\__|      \\_______|\\__|  \\__| \\_______| \\_______| \n");
+
+//	printf("\n");
+//
+//    
+//    setColor(32);
+//    printf("\t\t$$\\                       $$$$$$\\                                     $$\\            \n");
+//    printf("\t\t$$ |                     $$  __$$\\                                    $$ |           \n");
+//
+//    // Warna Putih (tengah)
+//    setColor(37);
+//    printf("\t\t$$ |      $$$$$$\\        $$ /  \\__| $$$$$$\\  $$$$$$\\  $$$$$$$\\   $$$$$$$ | $$$$$$\\   \n");
+//    printf("\t\t$$ |      \\____$$\\       $$ |$$$$\\ $$  __$$\\ \\____$$\\ $$  __$$\\ $$  __$$ |$$  __$$\\  \n");
+//    printf("\t\t$$ |      $$$$$$$ |      $$ |\\_$$ |$$ |  \\__|$$$$$$$ |$$ |  $$ |$$ /  $$ |$$$$$$$$ | \n");
+//
+//    // Warna Merah (sebelah kanan)
+//    setColor(31);
+//    printf("\t\t$$ |     $$  __$$ |      $$ |  $$ |$$ |     $$  __$$ |$$ |  $$ |$$ |  $$ |$$   ____| \n");
+//    printf("\t\t$$$$$$$$\\\\$$$$$$$ |      \\$$$$$$  |$$ |     \\$$$$$$$ |$$ |  $$ |\\$$$$$$$ |\\$$$$$$$\\  \n");
+//
+//    // Warna Putih (sebelah kanan, bagian bawah)
+//    setColor(37);
+//    printf("\t\t\\________|\\_______|       \\______/ \\__|      \\_______|\\__|  \\__| \\_______| \\_______| \n");
+//
+//    // Reset warna ke default
+//    printf("\033[0m");
+
+	char topLeft = 201, topRight = 187, bottomLeft = 200, bottomRight = 188;
+    char horizontal = 205, vertical = 186;
+    int i;
+    // Menampilkan border atas
+    printf("\n");
+    printf("\t%c", topLeft);  // Corner kiri atas
+    for ( i = 0; i < 100; i++) {
+        printf("%c", horizontal);  // Baris horizontal atas
+    }
+    printf("%c\n", topRight);  // Corner kanan atas
+
+    setColor(32);
+    printf("\t\t$$\\                       $$$$$$\\                                     $$\\            \n");
+    printf("\t\t$$ |                     $$  __$$\\                                    $$ |           \n");
+
+    // Warna Putih (tengah)
+    setColor(37);
+    printf("\t\t$$ |      $$$$$$\\        $$ /  \\__| $$$$$$\\  $$$$$$\\  $$$$$$$\\   $$$$$$$ | $$$$$$\\   \n");
+    printf("\t\t$$ |      \\____$$\\       $$ |$$$$\\ $$  __$$\\ \\____$$\\ $$  __$$\\ $$  __$$ |$$  __$$\\  \n");
+    printf("\t\t$$ |      $$$$$$$ |      $$ |\\_$$ |$$ |  \\__|$$$$$$$ |$$ |  $$ |$$ /  $$ |$$$$$$$$ | \n");
+
+    // Warna Merah (sebelah kanan)
+    setColor(31);
+    printf("\t\t$$ |     $$  __$$ |      $$ |  $$ |$$ |     $$  __$$ |$$ |  $$ |$$ |  $$ |$$   ____| \n");
+    printf("\t\t$$$$$$$$\\\\$$$$$$$ |      \\$$$$$$  |$$ |     \\$$$$$$$ |$$ |  $$ |\\$$$$$$$ |\\$$$$$$$\\  \n");
+
+    // Warna Putih (sebelah kanan, bagian bawah)
+    setColor(37);
+    printf("\t\t\\________|\\_______|       \\______/ \\__|      \\_______|\\__|  \\__| \\_______| \\_______| \n");
+
+
+    // Menampilkan border bawah
+    setColor(37);  // Mengatur warna putih
+    printf("\t%c", bottomLeft);  // Corner kiri bawah
+    for ( i = 0; i < 100; i++) {
+        printf("%c", horizontal);  // Baris horizontal bawah
+    }
+    printf("%c\n", bottomRight);  // Corner kanan bawah
+
+
+    resetColor();
+
+
+
 }
 
 int cekCred(cred users[], cred temp){
@@ -27,23 +97,33 @@ void menuAdmin(menu M[]){
 	while(1){
 		int input;
 		system("cls");
-		printf("\n\t[admin]\n\n");
-		printf("\n1. Edit Menu");
-		printf("\n2. Omzet");
-		printf("\n3. Popularitas");
-		printf("\n0. Exit");
-		printf("\n>>> ");
-		fflush(stdin); scanf("%d", &input);
+		 printf("\n\t\t\t\t\t      %c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c\n", 201, 205, 205, 205, 205, 205, 205, 205, 205, 205, 205, 205, 205, 205, 187);
+	    printf("\t\t\t\t\t-----%c  Admin Menu %c-----\n", 186, 186);
+	    printf("\t\t\t\t\t      %c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c\n", 200, 205, 205, 205, 205, 205, 205, 205, 205, 205, 205, 205, 205, 205, 188);
+	    printf("\n");
+	    
+
+	    printf("\t\t\t\t\t%c 1. Edit Menu           %c\n", 186, 186);
+	    printf("\t\t\t\t\t%c 2. Omzet               %c\n", 186, 186);
+	    printf("\t\t\t\t\t%c 3. Popularitas         %c\n", 186, 186);
+	    printf("\t\t\t\t\t%c 0. Exit                %c\n", 186, 186);
+	    printf("\n");
+	    
+
+	    printf("\t\t\t\t\t%cPlease select an option:%c", 186, 186);
+	    printf("\n\t\t\t\t\t  >>> ");
+	    scanf("%d", &input);
 		
 		switch(input){
 			case 1: 
 				menuPrint(M);
 				editMenu(M);
-				break;
+			break;
+			
 			case 2:
 				omzetPrint(M);
-				break;
-				
+			break;
+							
 			case 0:
 				return;
 		}
@@ -139,17 +219,31 @@ void readFromFile(string filename, menu M[]){
 
 
 
-void menuKasir(menu M[], Multilist *l, int *nomorNota){
+void menuKasir(menu M[], Multilist *l, int *nomorNota, string filename){
 	while(1){
 		int input;
 		system("cls");
-		printf("\n\t[Kasir]\n\n");
-		printf("\n1. Input Pesanan");
-		printf("\n2. Tambahan Pesanan");
-		printf("\n3. Gabung Nota");
-		printf("\n4. Split Bill");
-		printf("\n>>> ");
-		fflush(stdin); scanf("%d", &input);
+
+	    printf("\t\t\t\t\t      %c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c\n", 201, 205, 205, 205, 205, 205, 205, 205, 205, 205, 205, 205, 205, 205, 187);
+	    printf("\t\t\t\t\t -----%c  Kasir Menu %c-----\n", 186, 186);
+	    printf("\t\t\t\t\t      %c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c\n", 200, 205, 205, 205, 205, 205, 205, 205, 205, 205, 205, 205, 205, 205, 188);
+	    printf("\n");
+	    
+
+	    printf("  \t\t\t\t\t%c 1. Input Pesanan        %c\n", 186, 186);
+	    printf("  \t\t\t\t\t%c 2. Tambahan Pesanan     %c\n", 186, 186);
+	    printf("  \t\t\t\t\t%c 3. Gabung Nota          %c\n", 186, 186);
+	    printf("  \t\t\t\t\t%c 4. Split Bill           %c\n", 186, 186);
+	    printf("  \t\t\t\t\t%c 5. Save Data            %c\n", 186, 186);
+	    printf("  \t\t\t\t\t%c 6. Load Data            %c\n", 186, 186);
+	    printf("  \t\t\t\t\t%c 0. Exit                 %c\n", 186, 186);
+	    printf("\n");
+	    
+
+	    printf("  \t\t\t\t\t%c Please select an option:%c", 186, 186);
+	    printf("\n  \t\t\t\t\t>>> ");fflush(stdin);scanf("%d",&input);
+
+
 		
 		switch(input){
 			case 1: 
@@ -163,6 +257,23 @@ void menuKasir(menu M[], Multilist *l, int *nomorNota){
 			case 3:
 				mergeNota(&(*l));
 			break;
+			
+			case 5:
+				if(isEmpty(*l))
+					printf("\n\t\t\t\t\t[!] Belum Ada Pesanan [!]");
+				else
+					writeToFileMultiList(*l,filename);
+			break;
+			
+			case 6:
+				
+				readFromFileMultiList(&(*l),filename);
+			break;
+			
+			case 0:
+				return;
+			break;
+			
 		}
 		getch();
 	}
@@ -195,10 +306,10 @@ void mergeNota(Multilist *l){
 	if(!isEmpty(*l)){
 		if(!isOneElement(*l)){
 			int nota1, nota2;
-			printf("\nMasukkan Nomor Nota 1 Yang Ingin Di Gabung : ");scanf("%d", &nota1);
+			printf("\n\t\t\t\t\tMasukkan Nomor Nota 1 Yang Ingin Di Gabung : ");scanf("%d", &nota1);
 			if(findParent(*l, nota1)!=NULL){
 				AddressParent temp1 = findParent(*l, nota1);
-				printf("\nMasukkan Nomor Nota 2 Yang Ingin Di Gabung : ");scanf("%d", &nota2);
+				printf("\n\t\t\t\t\tMasukkan Nomor Nota 2 Yang Ingin Di Gabung : ");scanf("%d", &nota2);
 				if(findParent(*l, nota2)!=NULL){
 					AddressParent temp2 = findParent(*l, nota2);
 					if(nota1<nota2){
@@ -209,16 +320,24 @@ void mergeNota(Multilist *l){
 						deleteAtParent(&(*l), temp1->dataParent.nomorNota);
 					}
 				}else{
-					printf("\n[!] Mohon Maaf Nota Tidak Ditemukan[!]");
+					setColor(31);
+					printf("\n\t\t\t\t\t[!] Mohon Maaf Nota Tidak Ditemukan[!]");
+					resetColor();
 				}
 			}else{
-				printf("\n[!] Mohon Maaf Nota Tidak Ditemukan[!]");
+				setColor(31);
+				printf("\n\t\t\t\t\t[!] Mohon Maaf Nota Tidak Ditemukan[!]");
+				resetColor();
 			}
 		}else{
-			printf("\n[!] Mohon Maaf Hanya Ada 1 Nota [!]");
+			setColor(31);
+			printf("\n\t\t\t\t\t[!] Mohon Maaf Hanya Ada 1 Nota [!]");
+			resetColor();
 		}
 	}else{
-		printf("\n[!] Mohon Maaf Belum Ada Pesanan [!]");
+		setColor(31);
+		printf("\n\t\t\t\t\t[!] Mohon Maaf Belum Ada Pesanan [!]");
+		resetColor();
 	}
 }
 
@@ -228,44 +347,52 @@ void tambahPesanan(menu M[], Multilist *l){
 		string input, tanggalNota;
 		int index, banyak, cariNota;
 		printAll(*l);
-		printf("\nMasukkan Nomor Nota Yang Ingin Ditambah : ");scanf("%d", &cariNota);
+		printf("\n\t\t\t\t\tMasukkan Nomor Nota Yang Ingin Ditambah : ");scanf("%d", &cariNota);
 		if(findParent(*l, cariNota)!=NULL){
 			AddressParent temp = findParent(*l, cariNota);
 			do{
 				system("cls");
 				menuPrint(M);
-				printf("\nMasukkan Nomor atau Nama Menu Yang Ingin Di Pesan: ");gets(input);
+				printf("\n\t\t\t\t\tMasukkan Nomor atau Nama Menu Yang Ingin Di Pesan: ");fflush(stdin);gets(input);
 				if(sscanf(input, "%d", &index) == 1){
 		            index = findIdMenu(M, index);
 		        }else{
 		            index = findNamaMenu(M, input);
 		        }	
 		        if(index!=-1){
-		        	printf("\nMasukkan Banyak Pesanan : ");scanf("%d", &banyak);
+		        	printf("\n\t\t\t\t\tMasukkan Banyak Pesanan : ");scanf("%d", &banyak);
 		        	while(banyak<1){
-		        		printf("\n\t[!] Tidak Boleh Lebih Kecil Dari 1 [!]\n");
-		        		printf("\nMasukkan Banyak Pesanan : ");scanf("%d", &banyak);
+		        		setColor(31);
+		        		printf("\n\t\t\t\t\t[!] Tidak Boleh Lebih Kecil Dari 1 [!]\n");
+		        		resetColor();
+		        		printf("\n\t\t\t\t\tMasukkan Banyak Pesanan : ");scanf("%d", &banyak);
 					}
 					if(findChild(temp, M[index].idMenu)==NULL){
 						insertLastChild((*l), temp->dataParent.nomorNota, makeDataChild(M[index].idMenu, M[index].nama, banyak, M[index].harga));
 					}else{
 						temp->firstChild->dataChild.jumlah += banyak;
 					}
-					printf("\n\tApakah ada lagi yang ingin di pesan [N/Y] ");scanf("%s", input);
+					printf("\n\t\t\t\t\tApakah ada lagi yang ingin di pesan [N/Y] ");scanf("%s", input);
 					if(strcmpi(input,"n")==0){
 						findParent(*l, temp->dataParent.nomorNota)->dataParent.Total = countTotalHarga(findParent(*l, temp->dataParent.nomorNota));
 						printParent(findParent(*l, temp->dataParent.nomorNota));
 						strcpy(input,"0");
 					}
 				}else{
-					printf("\n[!] Nama Atau Id tidak ditemukan [!]");
-				}gstch();
+					setColor(31);
+					printf("\n\t\t\t\t\t[!] Nama Atau Id tidak ditemukan [!]");
+					resetColor();
+				}getch();
 			}while(strcmp(input, "0")!=0);
 		}else{
-			printf("\n[!] Mohon Maaf Nota Tidak Ditemukan[!]");
+			setColor(31);
+			printf("\n\t\t\t\t\t[!] Mohon Maaf Nota Tidak Ditemukan[!]");
+			resetColor();
 		}
 	}else{
-		printf("\n[!] Mohon Maaf Belum Ada Pesanan [!]");
+		setColor(31);
+		printf("\n\t\t\t\t\t[!] Mohon Maaf Belum Ada Pesanan [!]");
+		resetColor();
 	}
 	
 }
@@ -282,16 +409,16 @@ void inputPesanan(menu M[], Multilist *l, int *nomorNota){
 			system("cls");
 			menuPrint(M);
 			fflush(stdin);
-			printf("\nMasukkan Nomor atau Nama Menu Yang Ingin Di Pesan: ");gets(input);
+			printf("\n\t\t\t\t\tMasukkan Nomor atau Nama Menu Yang Ingin Di Pesan: ");gets(input);
 			if(sscanf(input, "%d", &index) == 1){
 	            index = findIdMenu(M,index);
 	        }else{
 	            index = findNamaMenu(M,  input);
 	        }	
 	        if(index!=-1){
-	        	printf("\nMasukkan Banyak Pesanan : ");scanf("%d", &banyak);
+	        	printf("\n\t\t\t\t\tMasukkan Banyak Pesanan : ");scanf("%d", &banyak);
 	        	while(banyak<1){
-	        		printf("\n\t[!] Tidak Boleh Lebih Kecil Dari 1 [!]\n");
+	        		printf("\n\t\t\t\t\t[!] Tidak Boleh Lebih Kecil Dari 1 [!]\n");
 	        		printf("\nMasukkan Banyak Pesanan : ");scanf("%d", &banyak);
 				}
 				if(findChild(findParent(*l, *nomorNota), M[index].idMenu)==NULL){
@@ -299,18 +426,22 @@ void inputPesanan(menu M[], Multilist *l, int *nomorNota){
 				}else{
 					findChild(findParent(*l, *nomorNota), M[index].idMenu)->dataChild.jumlah += banyak;
 				}
-				printf("\n\tApakah ada lagi yang ingin di pesan [N/Y] ");scanf("%s", input);
+				printf("\n\t\t\t\t\tApakah ada lagi yang ingin di pesan [N/Y] ");scanf("%s", input);
 				if(strcmpi(input,"n")==0){
 					findParent(*l, *nomorNota)->dataParent.Total = countTotalHarga(findParent(*l, *nomorNota));
 					printParent(findParent(*l, *nomorNota));
 					strcpy(input,"0");
 				}
 			}else{
-				printf("\n[!] Nama Atau Id tidak ditemukan [!]");
+				setColor(31);
+				printf("\n\t\t\t\t\t[!] Nama Atau Id tidak ditemukan [!]");
+				resetColor();
 			}getch();
 		}while(strcmp(input, "0")!=0);
 	}else{
-		printf("\n[!] Mohon Maaf Tidak Ada Meja Yang Tersedia [!]");
+		setColor(31);
+		printf("\n\t\t\t\t\t[!] Mohon Maaf Tidak Ada Meja Yang Tersedia [!]");
+		resetColor();
 	}	
 }
 
@@ -400,3 +531,148 @@ int findMejaKosong(Multilist l){
     }
     return -1;
 }
+
+void writeToFileMultiList(Multilist list, string filename) {
+    FILE* file = fopen(filename, "w");
+    if (file == NULL) {
+    	setColor(31);
+        perror("\n\t\t\t\t\tError opening file for writing.\n");
+        resetColor();
+        return;
+    }
+
+    AddressParent parent = list.firstParent;
+    while (parent != NULL) {
+        // nyimpen data parent
+        fprintf(file, "%d|%s|%d|%.2f\n",
+                parent->dataParent.nomorNota,
+                parent->dataParent.tanggalNota,
+                parent->dataParent.nomorMeja,
+                parent->dataParent.Total);
+
+        // nyimpen data child
+        AddressChild child = parent->firstChild;
+        while (child != NULL) {
+            fprintf(file, "C|%d|%s|%d|%.2f\n",
+                    child->dataChild.idMenu,
+                    child->dataChild.nama,
+                    child->dataChild.jumlah,
+                    child->dataChild.harga);
+            child = child->next;
+        }
+        parent = parent->next;
+    }
+
+    fclose(file);
+    system("cls");
+    loadingBar();
+    setColor(32);
+    printf("\n\t\t\t\t\t[+] Berhasil Menyimpan Data [+]");
+    resetColor();
+}
+
+void readFromFileMultiList(Multilist* list, const char* filename) {
+    FILE* file = fopen(filename, "r");
+    if (file == NULL) {
+    	setColor(31);//merah
+        perror("\n\t\t\t\t\tError opening file for reading.\n");
+        resetColor();
+        return;
+    }
+
+    string buffer;
+    AddressParent currentParent = NULL;
+
+    while (fgets(buffer, sizeof(buffer), file)) {
+        if (buffer[0] != 'C') { // Parent data
+            AddressParent newParent = (AddressParent)malloc(sizeof(NodeParent));
+            sscanf(buffer, "%d|%[^|]|%d|%f",
+                   &newParent->dataParent.nomorNota,
+                   newParent->dataParent.tanggalNota,
+                   &newParent->dataParent.nomorMeja,
+                   &newParent->dataParent.Total);
+
+            newParent->next = NULL;
+            newParent->firstChild = NULL;
+
+            if (list->firstParent == NULL) {
+                list->firstParent = newParent;
+            } else {
+                currentParent->next = newParent;
+            }
+            currentParent = newParent;
+        } else { // data child
+            AddressChild newChild = (AddressChild)malloc(sizeof(NodeChild));
+            sscanf(buffer + 2, "%d|%[^|]|%d|%f",
+                   &newChild->dataChild.idMenu,
+                   newChild->dataChild.nama,
+                   &newChild->dataChild.jumlah,
+                   &newChild->dataChild.harga);
+
+            newChild->next = NULL;
+
+            if (currentParent->firstChild == NULL) {
+                currentParent->firstChild = newChild;
+            } else {
+                AddressChild lastChild = currentParent->firstChild;
+                while (lastChild->next != NULL) {
+                    lastChild = lastChild->next;
+                }
+                lastChild->next = newChild;
+            }
+        }
+    }
+
+    fclose(file);
+    system("cls");
+    loadingBar();
+    setColor(32);
+    printf("\n\t\t\t\t\t[~] Berhasil Memasukan Data [~]");
+    resetColor();
+}
+
+
+void setColor(int color) {
+    printf("\033[0;%dm", color); // ANSI escape code untuk warna
+}
+
+void resetColor() {
+    printf("\033[0m"); // Reset ke warna default
+}
+
+void loadingBar() {
+	int i;
+    // Karakter untuk loading bar menggunakan extended ascii
+    char a = 177, b = 219;
+
+    printf("\n\n\n\n");
+    printf("\t\t\t\t\t");
+
+    // Cetak bar awal
+    for ( i = 0; i < 26; i++)
+        printf("%c", a);
+
+    // Kembali ke awal loading bar
+    printf("\r");
+    printf("\t\t\t\t\t");
+
+    // Cetak progres dengan perubahan warna
+    for ( i = 0; i < 26; i++) {
+        // Pilih warna berdasarkan progres
+        if (i < 9)
+            setColor(31); // Merah
+        else if (i < 18)
+            setColor(33); // Kuning
+        else
+            setColor(32); // Hijau
+
+        printf("%c", b);
+        Sleep(100); 
+    }
+
+
+    resetColor();
+    printf("\n");
+}
+
+
