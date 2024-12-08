@@ -97,21 +97,21 @@ void menuAdmin(menu M[]){
 	while(1){
 		int input;
 		system("cls");
-		 printf("\n\t\t\t\t\t      %c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c\n", 201, 205, 205, 205, 205, 205, 205, 205, 205, 205, 205, 205, 205, 205, 187);
-	    printf("\t\t\t\t\t-----%c  Admin Menu %c-----\n", 186, 186);
-	    printf("\t\t\t\t\t      %c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c\n", 200, 205, 205, 205, 205, 205, 205, 205, 205, 205, 205, 205, 205, 205, 188);
+		 printf("\n\e[45G %c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c\n", 201, 205, 205, 205, 205, 205, 205, 205, 205, 205, 205, 205, 205, 205, 205, 187);
+	    printf("\e[40G -----%c  Admin Menu  %c-----\n", 186, 186);
+	    printf("\e[45G %c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c\n", 200, 205, 205, 205, 205, 205, 205, 205, 205, 205, 205, 205, 205, 205, 205, 188);
 	    printf("\n");
 	    
 
-	    printf("\t\t\t\t\t%c 1. Edit Menu           %c\n", 186, 186);
-	    printf("\t\t\t\t\t%c 2. Omzet               %c\n", 186, 186);
-	    printf("\t\t\t\t\t%c 3. Popularitas         %c\n", 186, 186);
-	    printf("\t\t\t\t\t%c 0. Exit                %c\n", 186, 186);
+	    printf("\e[40G %c 1. Edit Menu           %c\n", 186, 186);
+	    printf("\e[40G %c 2. Omzet               %c\n", 186, 186);
+	    printf("\e[40G %c 3. Popularitas         %c\n", 186, 186);
+	    printf("\e[40G %c 0. Exit                %c\n", 186, 186);
 	    printf("\n");
 	    
 
-	    printf("\t\t\t\t\t%cPlease select an option:%c", 186, 186);
-	    printf("\n\t\t\t\t\t  >>> ");
+	    printf("\e[40G %cPlease select an option:%c", 186, 186);
+	    printf("\n\e[40G   >>> ");
 	    scanf("%d", &input);
 		
 		switch(input){
