@@ -28,7 +28,7 @@ typedef struct menu{
 	string nama;
 	float harga;
 	int dibeli;
-	char jenis
+	char jenis;
 }menu;
 
 typedef struct DataChild{
@@ -73,7 +73,7 @@ void omzetPrint(menu M[]);
 void Popularitas(menu M[]);
 
 void readFromFile(string filename, menu M[]);
-void menuKasir(menu M[], Multilist *l, int *nomorNota, string filename);
+void menuKasir(menu M[], Multilist *l, int *nomorNota, string filename, string filenameMenu);
 
 void insertAllChild(Multilist l, AddressParent temp1, AddressParent temp2);
 void mergeNota(Multilist *l);
