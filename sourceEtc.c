@@ -310,7 +310,7 @@ void menuKasir(menu M[], Multilist *l, int *nomorNota, string filename, string f
 	while(1){
 	
 		int input;
-		int currentMenu = 1;
+		int currentMenu = 0;
 		int jumlahMenu = 8;
 		
 		while(1){
@@ -425,41 +425,47 @@ void showKasirMenu(int currentMenu){
 
 
 void bayar(menu M[], Multilist *l, string filename){
-	printAll(*l);
-	int nomorNota;
-	float Dibayar;
-	printf("\nMasukkan Nomor Nota : ");
-	fflush(stdin); scanf("%d", &nomorNota);
-	
-	AddressParent temp = findParent(*l, nomorNota);
-	if(temp == NULL){
-		printf("\n\tNota dengan nomor %d tidak ditemukan", nomorNota);
-		return;
-	}
-	
-	while(1){
-		printf("\nDibayar : ");
-		fflush(stdin); scanf("%f", &Dibayar);
-		if(Dibayar >= temp->dataParent.Total){
-			printParent(temp);
-			printf("Dibayar     : Rp %.2f\n", Dibayar);
-			printf("Kembali     : Rp %.2f\n", Dibayar - temp->dataParent.Total);
-			break;
-		}else if(Dibayar == 0){
-			printf("\n\t Cancel");
+	if(!isEmpty(*l)){
+		printAll(*l);
+		int nomorNota;
+		float Dibayar;
+		printf("\nMasukkan Nomor Nota : ");
+		fflush(stdin); scanf("%d", &nomorNota);
+		
+		AddressParent temp = findParent(*l, nomorNota);
+		if(temp == NULL){
+			printf("\n\tNota dengan nomor %d tidak ditemukan", nomorNota);
 			return;
-		}else{
-			printf("\n\t Uang tidak cukup");
 		}
+		
+		while(1){
+			printf("\nDibayar : ");
+			fflush(stdin); scanf("%f", &Dibayar);
+			if(Dibayar >= temp->dataParent.Total){
+				printParent(temp);
+				printf("Dibayar     : Rp %.2f\n", Dibayar);
+				printf("Kembali     : Rp %.2f\n", Dibayar - temp->dataParent.Total);
+				break;
+			}else if(Dibayar == 0){
+				printf("\n\t Cancel");
+				return;
+			}else{
+				printf("\n\t Uang tidak cukup");
+			}
+		}
+		
+		while(temp->firstChild != NULL){
+			catat(M, temp->firstChild->dataChild);
+			deleteFirstChild((*l), nomorNota);
+		}
+		
+		deleteAtParent(&(*l), nomorNota);
+		saveToFile(filename, M);
+	}else{
+		setColor(31);
+		printf("\n\t\t\t\t\t[!] Mohon Maaf Belum Ada Pesanan [!]");
+		resetColor();
 	}
-	
-	while(temp->firstChild != NULL){
-		catat(M, temp->firstChild->dataChild);
-		deleteFirstChild((*l), nomorNota);
-	}
-	
-	deleteAtParent(&(*l), nomorNota);
-	saveToFile(filename, M);
 }
 
 void catat(menu M[], DataChild D){
@@ -556,14 +562,20 @@ void splitBill(Multilist *l, int *nomorNota){
 						exit = true;
 					}
 				}else{
-					printf("\n[!] Id tidak ditemukan [!]");
-				}getch();
+					setColor(31);
+					printf("\n\t\t\t\t\t[!] Id tidak ditemukan [!]");
+					resetColor();
+				}if(exit!=true) getch();
 			}while(exit != true);
 		}else{
-			printf("\n[!] Mohon Maaf Nota Tidak Ditemukan[!]");
+			setColor(31);
+			printf("\n\t\t\t\t\t[!] Mohon Maaf Nota Tidak Ditemukan[!]");
+			resetColor();
 		}
 	}else{
-		printf("\n[!] Mohon Maaf Belum Ada Pesanan [!]");
+		setColor(31);
+		printf("\n\t\t\t\t\t[!] Mohon Maaf Belum Ada Pesanan [!]");
+		resetColor();
 	}
 }
 
@@ -584,6 +596,9 @@ void mergeNota(Multilist *l){
 						insertAllChild(*l, temp2, temp1);
 						deleteAtParent(&(*l), temp1->dataParent.nomorNota);
 					}
+					setColor(32);
+					printf("\n\t\t\t\t\t[!] Berhasil Merge Nota [!]");
+					resetColor();
 				}else{
 					setColor(31);
 					printf("\n\t\t\t\t\t[!] Mohon Maaf Nota Tidak Ditemukan[!]");
@@ -649,7 +664,7 @@ void tambahPesanan(menu M[], Multilist *l){
 					setColor(31);
 					printf("\n\t\t\t\t\t[!] Nama Atau Id tidak ditemukan [!]");
 					resetColor();
-				}getch();
+				}if(exit!=true) getch();
 			}while(exit!=true);
 		}else{
 			setColor(31);
@@ -704,7 +719,7 @@ void inputPesanan(menu M[], Multilist *l, int *nomorNota){
 				setColor(31);
 				printf("\n\t\t\t\t\t[!] Nama Atau Id tidak ditemukan [!]");
 				resetColor();
-			}getch();
+			}if(exit!=true) getch();
 		}while(exit != true);
 	}else{
 		setColor(31);
