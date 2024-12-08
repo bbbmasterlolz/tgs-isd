@@ -163,6 +163,7 @@ void Popularitas(menu M[]){
 
 void showAdminMenu(int currentMenu) {
     int i;
+    
     const char *menuItems[] = {
         "Edit Menu",
         "Omzet",
@@ -171,15 +172,15 @@ void showAdminMenu(int currentMenu) {
     };
 
     // Draw top border
-    printf("\t\t\t\t\t%c", 201); // Top-left corner
+    printf("\e[45G%c", 201); // Top-left corner
     for (i = 0; i < 28; i++) printf("%c", 205); // Horizontal line
     printf("%c\n", 187); // Top-right corner
 
     // Title row
-    printf("\t\t\t\t\t%c       Admin Menu           %c\n", 186, 186);
+    printf("\e[45G%c       Admin Menu           %c\n", 186, 186);
 
     // Draw title separator
-    printf("\t\t\t\t\t%c", 204); // Left T-junction
+    printf("\e[45G%c", 204); // Left T-junction
     for (i = 0; i < 28; i++) printf("%c", 205); // Horizontal line
     printf("%c\n", 185); // Right T-junction
 
@@ -187,18 +188,18 @@ void showAdminMenu(int currentMenu) {
     for (i = 0; i < 4; i++) {
         if (i == currentMenu) {
             // Highlight the selected item
-            printf("\t\t\t\t\t%c", 186);
+            printf("\e[45G%c", 186);
             setColor(32);
             printf(" > %-24s ", menuItems[i]);
             resetColor();
             printf("%c\n", 186);
         } else {
-            printf("\t\t\t\t\t%c    %-23s %c\n", 186, menuItems[i], 186);
+            printf("\e[45G%c    %-23s %c\n", 186, menuItems[i], 186);
         }
     }
 
     // Draw bottom border
-    printf("\t\t\t\t\t%c", 200); // Bottom-left corner
+    printf("\e[45G%c", 200); // Bottom-left corner
     for (i = 0; i < 28; i++) printf("%c", 205); // Horizontal line
     printf("%c\n", 188); // Bottom-right corner
 }
@@ -246,7 +247,7 @@ void omzetPrint(menu M[]){
 	char fourway = 206;
 	
 	printf("%c", topLeft);
-	for(i=0; i<56; i++){
+	for(i=0; i<75; i++){
 //		printf("%c", horizontal);
 		printf("%c", horizontal);
 		if(i == 8 || i == 27 || i == 36 || i == 50){
@@ -262,10 +263,10 @@ void omzetPrint(menu M[]){
 	printf("\e[31G%cDibeli", vertical);
 	printf("\e[41G%cHarga", vertical);
 	printf("\e[56G%cTotal", vertical);
-	printf("%c\n", vertical);
+	printf("\e[81G%c\n", vertical);
 	
 	printf("%c", threeWayToTheRight);
-	for(i=0; i<56; i++){
+	for(i=0; i<75; i++){
 //		printf("%c", horizontal);
 		printf("%c", horizontal);
 		if(i == 8 || i == 27 || i == 36 || i == 50){
@@ -284,11 +285,11 @@ void omzetPrint(menu M[]){
 		printf("\e[30G %c %d", vertical, M[i].dibeli);
 		printf("\e[40G %c %.2f", vertical,  M[i].harga);
 		printf("\e[55G %c %.2f", vertical, (float) M[i].dibeli * M[i].harga);
-		printf("\e[61G %c", vertical);
+		printf("\e[80G %c", vertical);
 	}
 	
 	printf("\n%c", bottomLeft);
-	for(i=0; i<56; i++){
+	for(i=0; i<75; i++){
 		printf("%c", horizontal);
 		if(i == 8 || i == 27 || i == 36 || i == 50){
 			printf("%c", threeWayUp);
@@ -307,22 +308,22 @@ void menuPrint(menu M[]){
 	
 	printf("%c", topLeft);
 	for(i=0; i<56; i++){
-		printf("-");
+		printf("%c", horizontal);
 		if(i == 8 || i == 27){
 			printf("%c", threeWayDown);
 		}
 	}
 	printf("%c", topRight);
 	
-	printf("\n|");
+	printf("\n%c", vertical);
 	printf("\e[3GidMenu");
-	printf("\e[11G|      Harga");
-	printf("\e[31G|            Nama");
-	printf("\e[59G |\n");
+	printf("\e[11G%c      Harga", vertical);
+	printf("\e[31G%c            Nama", vertical);
+	printf("\e[59G %c\n", vertical);
 	
 	printf("%c", threeWayToTheRight);
 	for(i=0; i<56; i++){
-		printf("-");
+		printf("%c", horizontal);
 		if(i == 8 || i == 27){
 			printf("%c", fourway);
 		}
@@ -330,22 +331,21 @@ void menuPrint(menu M[]){
 	printf("%c", threeWayToTheLeft);
 	
 	for(i=0;i<maxMenu;i++){
-		printf("\n|", vertical);
+		printf("\n%c", vertical);
 		printf("%d", M[i].idMenu);
-		printf("\e[10G | %.2f",M[i].harga);
-		printf("\e[30G | %s", M[i].nama);
-		printf("\e[59G |");
+		printf("\e[10G %c %.2f", vertical, M[i].harga);
+		printf("\e[30G %c %s", vertical, M[i].nama);
+		printf("\e[59G %c", vertical);
 	}
 	
 	printf("\n%c", bottomLeft);
 	for(i=0; i<56; i++){
-		printf("-");
+		printf("%c", horizontal);
 		if(i == 8 || i == 27){
 			printf("%c", threeWayUp);
 		}
 	}
 	printf("%c\n", bottomRight);
-	
 }
 
 void saveToFile(string filename, menu M[]) {
@@ -446,7 +446,13 @@ void menuKasir(menu M[], Multilist *l, int *nomorNota, string filename, string f
 			break;
 			
 			case 6:
-				readFromFileMultiList(&(*l),filename);
+				if(!isFileEmpty(filename)){
+					deleteAllParent(&(*l));
+    				createEmpty(&(*l));
+					readFromFileMultiList(&(*l),filename);
+				}else{
+					printf("\n\t\t\t\t\t[!] Tidak Bisa Memuat Berkas [!]");
+				}
 			break;
 			
 			case 7:
@@ -946,7 +952,6 @@ void readFromFileMultiList(Multilist* list, const char* filename) {
         resetColor();
         return;
     }
-
     string buffer;
     AddressParent currentParent = NULL;
 
@@ -1030,7 +1035,7 @@ void loadingBar() {
             setColor(32); // Hijau
 		
         printf("%c", b);
-        Sleep(100); 
+        Sleep(25); 
     }
 
     resetColor();
@@ -1096,4 +1101,19 @@ void loginScenario(){
 	
 void gotoxy(int x, int y){
 	printf("\e[%d;%dH", y, x);
+}
+
+int isFileEmpty(string filename) {
+    FILE *file = fopen(filename, "r"); // Buka file dalam mode read
+    if (file == NULL) {
+        // Jika file tidak dapat dibuka, mungkin file tidak ada
+        return -1; // Indikasi file tidak ditemukan
+    }
+
+    fseek(file, 0, SEEK_END); // Pindahkan pointer ke akhir file
+    long size = ftell(file); // Dapatkan posisi pointer (ukuran file)
+    //long dapat menampung lebih besar dari int
+    fclose(file); // Tutup file
+
+    return size == 0; // Jika ukuran 0, file kosong
 }
