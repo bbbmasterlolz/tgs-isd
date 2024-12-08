@@ -4,23 +4,43 @@
 
 int main(int argc, char *argv[]) {
 	Multilist L;
+	AddressParent tempParent = L.firstParent;
 	menu M[maxMenu];
 	createEmpty(&L);
 	cred users[maxUser] = {{"admin", "admin"}, {"1", "1"}, {"brian", "1"}, {"damar", "2"}, {"verent", "3"}, {"alvin", "4"}};
 	cred temp;
-	int index_user = -1, nomorNota=0;
+	int index_user = -1, nomorNota;
 	string filename = "daftarMenu.txt";
 	string saveMultiList = "savedata.txt";//untuk multi list
 	
 	readFromFile(filename, M);
 	
+	
+
+	if (isFileEmpty(saveMultiList) == 0) { 
+    	readFromFileMultiList(&L, saveMultiList);
+	}
+	
+	tempParent = L.firstParent;
+	
+	if (tempParent != NULL) {
+	    while (tempParent->next != NULL) {
+	        tempParent = tempParent->next;
+	    }
+	    
+	    nomorNota = tempParent->dataParent.nomorNota;
+	} else {
+
+	    nomorNota = 0;
+	}
+	
 	while(1){
 		while(1){
 			system("cls");
 			printStartUp();
-			printf("\n\e[50G %c%c%c%c%c%c%c%c%c%c%c%c%c%c%c\n", 201, 205, 205, 205, 205, 205, 205, 205, 205, 205, 205, 205, 205, 187); // Top border using extended ASCII
-		    printf("\e[45G -----%c   Login    %c----\n", 186, 186); // Left and right borders using extended ASCII
-		    printf("\e[50G %c%c%c%c%c%c%c%c%c%c%c%c%c%c%c\n", 200, 205, 205, 205, 205, 205, 205, 205, 205, 205, 205, 205, 205, 188); // Bottom border using extended ASCII
+			printf("\n\e[50G %c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c\n", 201, 205, 205, 205, 205, 205, 205, 205, 205, 205, 205, 205, 205,205, 187); // Top border using extended ASCII
+		    printf("\e[45G -----%c   Login     %c----\n", 186, 186); // Left and right borders using extended ASCII
+		    printf("\e[50G %c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c\n", 200, 205, 205, 205, 205, 205, 205, 205, 205, 205, 205, 205, 205,205, 188); // Bottom border using extended ASCII
 
 			printf("\e[45G username: "); fflush(stdin); gets(temp.user);
 			printf("\e[45G password: "); fflush(stdin); gets(temp.pass);
@@ -31,7 +51,7 @@ int main(int argc, char *argv[]) {
 			}else{
 				loginScenario();
 				
-				printf("\n\e[42G[>     Halo, %s !     <]", temp.user);
+				printf("\n\e[41G[>     Halo, %s !     <]", temp.user);
 				getch();
 				break;
 			}
