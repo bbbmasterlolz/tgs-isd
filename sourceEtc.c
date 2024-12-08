@@ -219,7 +219,7 @@ void readFromFile(string filename, menu M[]){
 
 
 
-void menuKasir(menu M[], Multilist *l, int *nomorNota, string filename){
+void menuKasir(menu M[], Multilist *l, int *nomorNota, string filename, string filenameMenu){
 	while(1){
 		int input;
 		system("cls");
@@ -261,15 +261,19 @@ void menuKasir(menu M[], Multilist *l, int *nomorNota, string filename){
 			case 4:
 				splitBill(&(*l), &(*nomorNota));
 			break;
-			
+
 			case 5:
+				bayar(&(*l), &(*nomorNota), filenameMenu);
+			break;
+			
+			case 6:
 				if(isEmpty(*l))
 					printf("\n\t\t\t\t\t[!] Belum Ada Pesanan [!]");
 				else
 					writeToFileMultiList(*l,filename);
 			break;
 			
-			case 6:
+			case 7:
 				
 				readFromFileMultiList(&(*l),filename);
 			break;
@@ -281,6 +285,41 @@ void menuKasir(menu M[], Multilist *l, int *nomorNota, string filename){
 		}
 		getch();
 	}
+}
+
+void bayar(menu M[], Multilist *l, string filename){
+	printAll(*l);
+	int nomorNota;
+	printf("\nMasukkan Nomor Nota : ");
+	fflush(stdin); scanf("%d", &nomorNota);
+	
+	AddressParent temp = findParent(*l, nomorNota);
+	if(temp == NULL){
+		printf("\n\tNota dengan nomor %d tidak ditemukan", nomorNota);
+		return;
+	}
+	
+	while(temp->firstChild != NULL){
+		catat(M, temp->firstChild->dataChild);
+		deleteFirstChild((*l), nomorNota);
+	}
+	
+	deleteAtParent(&(*l), nomorNota);
+	saveToFile(filename, M);
+}
+
+void catat(menu M[], DataChild D){
+	int i;
+	if(strcmp(M[D.idMenu-1].nama, D.nama)==0){
+		i = D.idMenu-1;
+	}else{
+		for(i=0;i<maxMenu;i++){
+			if(strcmp(M[i].nama, D.nama)==0){
+				break;
+			}
+		}
+	}
+	M[i].dibeli += D.jumlah;
 }
 
 void insertAllChild(Multilist l, AddressParent temp1, AddressParent temp2){
