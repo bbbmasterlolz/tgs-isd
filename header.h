@@ -89,6 +89,8 @@ int findMejaKosong(Multilist l);
 
 void splitBill(Multilist *l, int *nomorNota);
 
+void catat(menu M[], DataChild D);
+void bayar(menu M[], Multilist *l, string filename);
 //source Parent
 void createEmpty(Multilist *L);
 
