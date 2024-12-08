@@ -28,6 +28,7 @@ typedef struct menu{
 	string nama;
 	float harga;
 	int dibeli;
+	char jenis
 }menu;
 
 typedef struct DataChild{
@@ -69,6 +70,7 @@ void saveToFile(string filename, menu M[]);
 
 void editMenu(menu M[]);
 void omzetPrint(menu M[]);
+void Popularitas(menu M[]);
 
 void readFromFile(string filename, menu M[]);
 void menuKasir(menu M[], Multilist *l, int *nomorNota, string filename);
