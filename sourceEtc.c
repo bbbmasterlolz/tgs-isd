@@ -240,28 +240,112 @@ void editMenu(menu M[]){
 
 void omzetPrint(menu M[]){
 	int i;
-	printf("\n idMenu");
-	printf("\e[10G nama");
-	printf("\e[30G dibeli");
-	printf("\e[40G harga");
-	printf("\e[55G total");
-	for(i=0;i<maxMenu;i++){
-		printf("\n %d", M[i].idMenu);
-		printf("\e[10G %s",M[i].nama);
-		printf("\e[30G %d", M[i].dibeli);
-		printf("\e[40G %.2f", M[i].harga);
-		printf("\e[55G %.2f", (float) M[i].dibeli * M[i].harga);
+	char topLeft = 201, topRight = 187, bottomLeft = 200, bottomRight = 188;
+    char horizontal = 205, vertical = 186;
+    char threeWayToTheRight = 204, threeWayToTheLeft = 185, threeWayUp = 202, threeWayDown = 203;
+	char fourway = 206;
+	
+	printf("%c", topLeft);
+	for(i=0; i<56; i++){
+//		printf("%c", horizontal);
+		printf("%c", horizontal);
+		if(i == 8 || i == 27 || i == 36 || i == 50){
+			printf("%c", threeWayDown);
+		}
 	}
+	printf("%c", topRight);
+	
+	
+	printf("\n%c", vertical);
+	printf("idMenu");
+	printf("\e[11G%cNama", vertical);
+	printf("\e[31G%cDibeli", vertical);
+	printf("\e[41G%cHarga", vertical);
+	printf("\e[56G%cTotal", vertical);
+	printf("%c\n", vertical);
+	
+	printf("%c", threeWayToTheRight);
+	for(i=0; i<56; i++){
+//		printf("%c", horizontal);
+		printf("%c", horizontal);
+		if(i == 8 || i == 27 || i == 36 || i == 50){
+			printf("%c", fourway);
+		}
+	}
+	printf("%c", threeWayToTheLeft);
+	
+	for(i=0;i<maxMenu;i++){
+//		printf("\n%c", vertical);
+		
+		
+		printf("\n%c", vertical);
+		printf("%d", M[i].idMenu);
+		printf("\e[10G %c %s", vertical,M[i].nama);
+		printf("\e[30G %c %d", vertical, M[i].dibeli);
+		printf("\e[40G %c %.2f", vertical,  M[i].harga);
+		printf("\e[55G %c %.2f", vertical, (float) M[i].dibeli * M[i].harga);
+		printf("\e[61G %c", vertical);
+	}
+	
+	printf("\n%c", bottomLeft);
+	for(i=0; i<56; i++){
+		printf("%c", horizontal);
+		if(i == 8 || i == 27 || i == 36 || i == 50){
+			printf("%c", threeWayUp);
+		}
+	}
+	printf("%c\n", bottomRight);
+	
 }
 
 void menuPrint(menu M[]){
 	int i;
-	printf("\nidMenu \e[10G harga \e[25G nama\n");
-	for(i=0;i<maxMenu;i++){
-		printf("%d \e[10G %.2f", M[i].idMenu, M[i].harga);
-		printf("\e[25G");
-		printf(" %s \n",M[i].nama);
+	char topLeft = 201, topRight = 187, bottomLeft = 200, bottomRight = 188;
+    char horizontal = 205, vertical = 186;
+    char threeWayToTheRight = 204, threeWayToTheLeft = 185, threeWayUp = 202, threeWayDown = 203;
+	char fourway = 206;
+	
+	printf("%c", topLeft);
+	for(i=0; i<56; i++){
+		printf("-");
+		if(i == 8 || i == 27){
+			printf("%c", threeWayDown);
+		}
 	}
+	printf("%c", topRight);
+	
+	printf("\n|");
+	printf("\e[3GidMenu");
+	printf("\e[11G|      Harga");
+	printf("\e[31G|            Nama");
+	printf("\e[59G |\n");
+	
+	printf("%c", threeWayToTheRight);
+	for(i=0; i<56; i++){
+		printf("-");
+		if(i == 8 || i == 27){
+			printf("%c", fourway);
+		}
+	}
+	printf("%c", threeWayToTheLeft);
+	
+	for(i=0;i<maxMenu;i++){
+		printf("\n|", vertical);
+		printf("%d", M[i].idMenu);
+		printf("\e[10G | %.2f",M[i].harga);
+		printf("\e[30G | %s", M[i].nama);
+		printf("\e[59G |");
+	}
+	
+	printf("\n%c", bottomLeft);
+	for(i=0; i<56; i++){
+		printf("-");
+		if(i == 8 || i == 27){
+			printf("%c", threeWayUp);
+		}
+	}
+	printf("%c\n", bottomRight);
+	
 }
 
 void saveToFile(string filename, menu M[]) {
@@ -928,34 +1012,88 @@ void loadingBar() {
     // Karakter untuk loading bar menggunakan extended ascii
     char a = 177, b = 219;
 
-    printf("\n\n\n\n");
-    printf("\t\t\t\t\t");
-
     // Cetak bar awal
-    for ( i = 0; i < 26; i++)
+    gotoxy(40, 15);
+    
+    for (i = 1; i < 30; i++)
         printf("%c", a);
 
-    // Kembali ke awal loading bar
-    printf("\r");
-    printf("\t\t\t\t\t");
-
     // Cetak progres dengan perubahan warna
-    for ( i = 0; i < 26; i++) {
+    gotoxy(40, 15);
+	for (i = 1; i < 30; i++) {
         // Pilih warna berdasarkan progres
-        if (i < 9)
+        if (i <= 10)
             setColor(31); // Merah
-        else if (i < 18)
+        else if (i <= 20)
             setColor(33); // Kuning
         else
             setColor(32); // Hijau
-
+		
         printf("%c", b);
         Sleep(100); 
     }
-
 
     resetColor();
     printf("\n");
 }
 
+void loginScenario(){
+	
+	int i;
+	char topLeft = 201, topRight = 187, bottomLeft = 200, bottomRight = 188;
+    char horizontal = 205, vertical = 186;
+    char threeWayToTheRight = 204, threeWayToTheLeft = 185, threeWayUp = 202, threeWayDown = 203;
+	char fourway = 206;
+	
+	system("cls");
+	printf("\n");
+    printf("\t%c", topLeft);  // Corner kiri atas
+    for ( i = 0; i < 100; i++) {
+        printf("%c", horizontal);  // Baris horizontal atas
+    }
+    printf("%c\n", topRight);  // Corner kanan atas
 
+    setColor(32);
+    printf("\t\t$$\\                       $$$$$$\\                                     $$\\            \n");
+    printf("\t\t$$ |                     $$  __$$\\                                    $$ |           \n");
+
+    // Warna Putih (tengah)
+    setColor(37);
+    printf("\t\t$$ |      $$$$$$\\        $$ /  \\__| $$$$$$\\  $$$$$$\\  $$$$$$$\\   $$$$$$$ | $$$$$$\\   \n");
+    printf("\t\t$$ |      \\____$$\\       $$ |$$$$\\ $$  __$$\\ \\____$$\\ $$  __$$\\ $$  __$$ |$$  __$$\\  \n");
+    printf("\t\t$$ |      $$$$$$$ |      $$ |\\_$$ |$$ |  \\__|$$$$$$$ |$$ |  $$ |$$ /  $$ |$$$$$$$$ | \n");
+
+    // Warna Merah (sebelah kanan)
+    setColor(31);
+    printf("\t\t$$ |     $$  __$$ |      $$ |  $$ |$$ |     $$  __$$ |$$ |  $$ |$$ |  $$ |$$   ____| \n");
+    printf("\t\t$$$$$$$$\\\\$$$$$$$ |      \\$$$$$$  |$$ |     \\$$$$$$$ |$$ |  $$ |\\$$$$$$$ |\\$$$$$$$\\  \n");
+
+    // Warna Putih (sebelah kanan, bagian bawah)
+    setColor(37);
+    printf("\t\t\\________|\\_______|       \\______/ \\__|      \\_______|\\__|  \\__| \\_______| \\_______| \n");
+
+    // Menampilkan border bawah
+    setColor(37);  // Mengatur warna putih
+    printf("\t%c", bottomLeft);  // Corner kiri bawah
+    for ( i = 0; i < 100; i++) {
+        printf("%c", horizontal);  // Baris horizontal bawah
+    }
+    printf("%c\n", bottomRight);  // Corner kanan bawah
+
+    resetColor();
+	printf("\n\e[42G   | >>> Loading <<< |");    
+	loadingBar();
+	
+	
+//cek level
+//	printf("\n\t1");
+//    printf("\n\t\t2");
+//    printf("\n\t\t\t3");
+//    printf("\n\t\t\t\t4");
+//    printf("\n\t\t\t\t\t5");
+//    printf("\n\t\t\t\t\t\t6");
+}
+	
+void gotoxy(int x, int y){
+	printf("\e[%d;%dH", y, x);
+}
