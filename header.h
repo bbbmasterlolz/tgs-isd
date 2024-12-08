@@ -87,6 +87,8 @@ int findIdMenu(menu M[],int input);
 int findNamaMenu(menu M[], string input);
 int findMejaKosong(Multilist l);
 
+void splitBill(Multilist *l, int *nomorNota);
+
 //source Parent
 void createEmpty(Multilist *L);
 
