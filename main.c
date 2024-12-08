@@ -51,7 +51,7 @@ int main(int argc, char *argv[]) {
 			}else{
 				loginScenario();
 				
-				printf("\n\e[41G[>     Halo, %s !     <]", temp.user);
+				printf("\n\e[42G[>     Halo, %s !\e[65G<]", temp.user);
 				getch();
 				break;
 			}
