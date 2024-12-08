@@ -38,9 +38,9 @@ int main(int argc, char *argv[]) {
 		while(1){
 			system("cls");
 			printStartUp();
-			printf("\n\e[50G %c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c\n", 201, 205, 205, 205, 205, 205, 205, 205, 205, 205, 205, 205, 205,205, 187); // Top border using extended ASCII
+			printf("\n\e[50G %c%c%c%c%c%c%c%c%c%c%c%c%c%c%c\n", 201, 205, 205, 205, 205, 205, 205, 205, 205, 205, 205, 205, 205,205, 187); // Top border using extended ASCII
 		    printf("\e[45G -----%c   Login     %c----\n", 186, 186); // Left and right borders using extended ASCII
-		    printf("\e[50G %c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c\n", 200, 205, 205, 205, 205, 205, 205, 205, 205, 205, 205, 205, 205,205, 188); // Bottom border using extended ASCII
+		    printf("\e[50G %c%c%c%c%c%c%c%c%c%c%c%c%c%c%c\n", 200, 205, 205, 205, 205, 205, 205, 205, 205, 205, 205, 205, 205,205, 188); // Bottom border using extended ASCII
 
 			printf("\e[45G username: "); fflush(stdin); gets(temp.user);
 			printf("\e[45G password: "); fflush(stdin); gets(temp.pass);
