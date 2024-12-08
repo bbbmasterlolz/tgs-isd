@@ -380,6 +380,7 @@ void showKasirMenu(int currentMenu){
 void bayar(menu M[], Multilist *l, string filename){
 	printAll(*l);
 	int nomorNota;
+	float Dibayar;
 	printf("\nMasukkan Nomor Nota : ");
 	fflush(stdin); scanf("%d", &nomorNota);
 	
@@ -387,6 +388,22 @@ void bayar(menu M[], Multilist *l, string filename){
 	if(temp == NULL){
 		printf("\n\tNota dengan nomor %d tidak ditemukan", nomorNota);
 		return;
+	}
+	
+	while(1){
+		printf("\nDibayar : ");
+		fflush(stdin); scanf("%f", &Dibayar);
+		if(Dibayar >= temp->dataParent.Total){
+			printParent(temp);
+			printf("Dibayar     : Rp %.2f\n", Dibayar);
+			printf("Kembali     : Rp %.2f\n", Dibayar - temp->dataParent.Total);
+			break;
+		}else if(Dibayar == 0){
+			printf("\n\t Cancel");
+			return;
+		}else{
+			printf("\n\t Uang tidak cukup");
+		}
 	}
 	
 	while(temp->firstChild != NULL){
