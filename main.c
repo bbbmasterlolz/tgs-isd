@@ -1,10 +1,10 @@
 #include "header.h"
 
 //Disusun Oleh :
-//		Michael Brian Supranoto        - 230712483
 //		Dionisius Christinus Jan Alvin - 230712393
 //		I Made Damar Sadhu Wicaksana   - 230712395
 //		Verrent Natha Aurelia	       - 230712401
+//		Michael Brian Supranoto        - 230712483
 
 int main(int argc, char *argv[]) {
 	Multilist L;
