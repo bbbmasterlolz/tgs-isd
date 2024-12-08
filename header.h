@@ -124,7 +124,7 @@ bool isOneElement(Multilist L);
 bool haveChild(AddressParent ap);
 
 void deleteAllChild(AddressParent parent);
-void deleteAllParent(Multilist *L);
+
 
 AddressChild alokasiChild(DataChild data);
 AddressChild findChild(AddressParent parent, int idMenu);
@@ -142,7 +142,6 @@ void printAllChild(AddressParent parent);
 //save and load data from a file using multi list
 void writeToFileMultiList(Multilist list, string filename);
 void readFromFileMultiList(Multilist* list, const char* filename);
-int isFileEmpty(string filename);
 
 
 //warna

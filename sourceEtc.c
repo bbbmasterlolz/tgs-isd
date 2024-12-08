@@ -100,7 +100,7 @@ void menuAdmin(menu M[]){
 		int jumlahMenu=4;
 		
 		
-		
+
 		while(1){
 			system("cls"); // Clear screen
 	        showAdminMenu(currentMenu);
@@ -520,13 +520,7 @@ void menuKasir(menu M[], Multilist *l, int *nomorNota, string filename, string f
 			break;
 			
 			case 6:
-				if(!isFileEmpty(filename)){
-					deleteAllParent(&(*l));
-    				createEmpty(&(*l));
-					readFromFileMultiList(&(*l),filename);
-				}else{
-					printf("\n\t\t\t\t\t[!] Tidak Bisa Memuat Berkas [!]");
-				}
+				readFromFileMultiList(&(*l),filename);
 			break;
 			
 			case 7:
@@ -551,9 +545,6 @@ void showKasirMenu(int currentMenu){
         "Exit"
     };
 
-
-
-	
     // Draw top border
     printf("\t\t\t\t\t  %c", 201); // Top-left corner
     for ( i = 0; i < 28; i++) printf("%c", 205); // Horizontal line
@@ -678,7 +669,7 @@ void splitBill(Multilist *l, int *nomorNota){
 		makeTanggal(&tanggalNota);
 		system("cls");
 		printf("\n\t==[ Split Bill ]==");
-		printf("\nMasukkan Nomor Nota Yang Ingin Di Split : ");fflush(stdin);scanf("%d", &nota);
+		printf("\nMasukkan Nomor Nota Yang Ingin Di Split : ");scanf("%d", &nota);
 		if(findParent(*l, nota)!=NULL){
 			AddressParent temp = findParent(*l, nota), notaBaru;
 			insertLastParent(&(*l), makeDataParent(*nomorNota, tanggalNota, temp->dataParent.nomorMeja, 0));
@@ -686,17 +677,17 @@ void splitBill(Multilist *l, int *nomorNota){
 			do{
 				system("cls");
 				printParent(temp);
-				printf("\nMasukkan Nomor Menu Yang Ingin Pindah: ");fflush(stdin);scanf("%d", &input);
+				printf("\nMasukkan Nomor Menu Yang Ingin Pindah: ");scanf("%d", &input);
 				AddressChild tempC = findChild(temp, input);
 				if(tempC!=NULL){
-		        	printf("\nMasukkan Banyak yang ingin di pindah: ");fflush(stdin);scanf("%d", &banyak);
+		        	printf("\nMasukkan Banyak yang ingin di pindah: ");scanf("%d", &banyak);
 		        	while(banyak<1 || banyak>tempC->dataChild.jumlah){
 		        		if(banyak<1){
 		        			printf("\n\t[!] Tidak Boleh Lebih Kecil Dari 1 [!]\n");
 						}else{
 							printf("\n\t[!] Tidak Boleh Lebih Banyak dari %d [!]\n", tempC->dataChild.jumlah);
 						}
-		        		printf("\nMasukkan Banyak yang ingin di pindah: ");fflush(stdin);scanf("%d", &banyak);
+		        		printf("\nMasukkan Banyak yang ingin di pindah: ");scanf("%d", &banyak);
 					}
 					
 					if(findChild(notaBaru, input)==NULL){
@@ -747,10 +738,10 @@ void mergeNota(Multilist *l){
 	if(!isEmpty(*l)){
 		if(!isOneElement(*l)){
 			int nota1, nota2;
-			printf("\n\t\t\t\t\tMasukkan Nomor Nota 1 Yang Ingin Di Gabung : ");fflush(stdin);scanf("%d", &nota1);
+			printf("\n\t\t\t\t\tMasukkan Nomor Nota 1 Yang Ingin Di Gabung : ");scanf("%d", &nota1);
 			if(findParent(*l, nota1)!=NULL){
 				AddressParent temp1 = findParent(*l, nota1);
-				printf("\n\t\t\t\t\tMasukkan Nomor Nota 2 Yang Ingin Di Gabung : ");fflush(stdin);scanf("%d", &nota2);
+				printf("\n\t\t\t\t\tMasukkan Nomor Nota 2 Yang Ingin Di Gabung : ");scanf("%d", &nota2);
 				if(findParent(*l, nota2)!=NULL){
 					AddressParent temp2 = findParent(*l, nota2);
 					if(nota1<nota2){
@@ -792,7 +783,7 @@ void tambahPesanan(menu M[], Multilist *l){
 		int index, banyak, cariNota;
 		bool exit = false;
 		printAll(*l);
-		printf("\n\t\t\t\t\tMasukkan Nomor Nota Yang Ingin Ditambah : ");fflush(stdin);scanf("%d", &cariNota);
+		printf("\n\t\t\t\t\tMasukkan Nomor Nota Yang Ingin Ditambah : ");scanf("%d", &cariNota);
 		if(findParent(*l, cariNota)!=NULL){
 			AddressParent temp = findParent(*l, cariNota);
 			do{
@@ -805,12 +796,12 @@ void tambahPesanan(menu M[], Multilist *l){
 		            index = findNamaMenu(M, input);
 		        }	
 		        if(index!=-1){
-		        	printf("\n\t\t\t\t\tMasukkan Banyak Pesanan : ");fflush(stdin);scanf("%d", &banyak);
+		        	printf("\n\t\t\t\t\tMasukkan Banyak Pesanan : ");scanf("%d", &banyak);
 		        	while(banyak<1){
 		        		setColor(31);
 		        		printf("\n\t\t\t\t\t[!] Tidak Boleh Lebih Kecil Dari 1 [!]\n");
 		        		resetColor();
-		        		printf("\n\t\t\t\t\tMasukkan Banyak Pesanan : ");fflush(stdin);scanf("%d", &banyak);
+		        		printf("\n\t\t\t\t\tMasukkan Banyak Pesanan : ");scanf("%d", &banyak);
 					}
 					if(findChild(temp, M[index].idMenu)==NULL){
 						insertLastChild((*l), temp->dataParent.nomorNota, makeDataChild(M[index].idMenu, M[index].nama, banyak, M[index].harga));
@@ -863,10 +854,10 @@ void inputPesanan(menu M[], Multilist *l, int *nomorNota){
 	            index = findNamaMenu(M,  input);
 	        }	
 	        if(index!=-1){
-	        	printf("\n\t\t\t\t\tMasukkan Banyak Pesanan : ");fflush(stdin);scanf("%d", &banyak);
+	        	printf("\n\t\t\t\t\tMasukkan Banyak Pesanan : ");scanf("%d", &banyak);
 	        	while(banyak<1){
 	        		printf("\n\t\t\t\t\t[!] Tidak Boleh Lebih Kecil Dari 1 [!]\n");
-	        		printf("\nMasukkan Banyak Pesanan : ");fflush(stdin);scanf("%d", &banyak);
+	        		printf("\nMasukkan Banyak Pesanan : ");scanf("%d", &banyak);
 				}
 				if(findChild(findParent(*l, *nomorNota), M[index].idMenu)==NULL){
 					insertLastChild((*l), *nomorNota, makeDataChild(M[index].idMenu, M[index].nama, banyak, M[index].harga));
@@ -1026,6 +1017,7 @@ void readFromFileMultiList(Multilist* list, const char* filename) {
         resetColor();
         return;
     }
+
     string buffer;
     AddressParent currentParent = NULL;
 
@@ -1175,19 +1167,4 @@ void loginScenario(){
 	
 void gotoxy(int x, int y){
 	printf("\e[%d;%dH", y, x);
-}
-
-int isFileEmpty(string filename) {
-    FILE *file = fopen(filename, "r"); // Buka file dalam mode read
-    if (file == NULL) {
-        // Jika file tidak dapat dibuka, mungkin file tidak ada
-        return -1; // Indikasi file tidak ditemukan
-    }
-
-    fseek(file, 0, SEEK_END); // Pindahkan pointer ke akhir file
-    long size = ftell(file); // Dapatkan posisi pointer (ukuran file)
-    //long dapat menampung lebih besar dari int
-    fclose(file); // Tutup file
-
-    return size == 0; // Jika ukuran 0, file kosong
 }

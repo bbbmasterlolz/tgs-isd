@@ -131,16 +131,6 @@ void deleteLastParent(Multilist *L){
 	}
 }
 
-void deleteAllParent(Multilist *L) {
-    AddressParent temp;
-
-    while (L->firstParent != NULL) {
-        temp = L->firstParent;    
-        deleteAllChild(temp); 
-        deleteFirstParent(L); 
-    }
-}
-
 void deleteAllChild(AddressParent parent){
 	AddressChild temp;
 	
