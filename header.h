@@ -149,4 +149,8 @@ void setColor(int color);//set colour sesuai parameter
 void resetColor();
 void loadingBar();
 
+//
+void gotoxy(int x, int y);
 
+//User Interface
+void loginScenario();
