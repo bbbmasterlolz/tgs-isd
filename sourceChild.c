@@ -119,7 +119,9 @@ void deleteAtChild(Multilist L, int idParent, int idMenu){
 }
 
 void printChild(AddressChild child){
-	printf("| %-2d | %-15s | %-17.2f | %-6d | %-13.2f |\n",child->dataChild.idMenu, child->dataChild.nama, child->dataChild.harga, child->dataChild.jumlah,  child->dataChild.harga*child->dataChild.jumlah);
+	
+	char vertical = 186; 
+	printf("%c %-2d %c %-15s %c %-17.2f %c %-6d %c %-13.2f \e[72G%c\n", vertical, child->dataChild.idMenu, vertical,  child->dataChild.nama, vertical, child->dataChild.harga, vertical, child->dataChild.jumlah, vertical, child->dataChild.harga*child->dataChild.jumlah, vertical);
 }
 
 void printAllChild(AddressParent parent){
@@ -130,4 +132,3 @@ void printAllChild(AddressParent parent){
 		temp = temp->next;
 	}
 }
-
