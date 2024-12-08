@@ -83,7 +83,7 @@ void deleteFirstParent(Multilist *L){
 	if(!isEmpty(*L)){
 		deleteAllChild(temp);
 		
-		L->firstParent->next;
+		L->firstParent = L->firstParent->next;
 		free(temp);
 	}
 }
