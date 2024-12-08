@@ -214,10 +214,27 @@ void editMenu(menu M[]){
 	}
 	temp.idMenu = input;
 	temp.dibeli = 0;
-	printf("\nnama menu: ");
+	printf("\nnama menu : ");
 	fflush(stdin);gets(temp.nama);
-	printf("\nharga menu: ");
-	fflush(stdin);scanf("%f", &temp.harga);
+	while(1){
+		printf("\nharga menu: ");
+		fflush(stdin);
+		if(scanf("%f", &temp.harga)==1){
+			break;
+		}
+	}
+	printf("\nMakanan = F | Minuman = D");
+	while(1){
+		printf("\njenis menu: ");
+		fflush(stdin);scanf("%c", &temp.jenis);
+		if(temp.jenis == 'F' || temp.jenis == 'f'){
+			temp.jenis = 'F';
+			break;
+		}else if(temp.jenis == 'd' || temp.jenis == 'D'){
+			temp.jenis = 'D';
+			break;
+		}
+	}
 	M[input-1] = temp;
 }
 
@@ -247,6 +264,17 @@ void menuPrint(menu M[]){
 	}
 }
 
+
+void menuPrint(menu M[]){
+	int i;
+	printf("\nidMenu \e[10G harga \e[25G nama\n");
+	for(i=0;i<maxMenu;i++){
+		printf("%d \e[10G %.2f", M[i].idMenu, M[i].harga);
+		printf("\e[25G");
+		printf(" %s \n",M[i].nama);
+	}
+}
+
 void saveToFile(string filename, menu M[]) {
 	int i;
 	
@@ -257,7 +285,7 @@ void saveToFile(string filename, menu M[]) {
     }
 	
     for (i = 0; i < maxMenu; i++) {
-        fprintf(file, "%d %s | %f %d\n", M[i].idMenu, M[i].nama, M[i].harga, M[i].dibeli);
+        fprintf(file, "%d %s | %f %d %c \n", M[i].idMenu, M[i].nama, M[i].harga, M[i].dibeli, M[i].jenis);
     }
 	
     fclose(file);
@@ -284,11 +312,10 @@ void readFromFile(string filename, menu M[]){
 				strcat(M[i].nama, " ");
 			}
 		}
-    	fscanf(file, "%f %d", &M[i].harga, &M[i].dibeli);
+    	fscanf(file, "%f %d %c \n", &M[i].harga, &M[i].dibeli, &M[i].jenis);
 	}
 	fclose(file);
 }
-
 
 void menuKasir(menu M[], Multilist *l, int *nomorNota, string filename, string filenameMenu){
 	while(1){
