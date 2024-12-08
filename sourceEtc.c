@@ -142,7 +142,7 @@ void menuAdmin(menu M[]){
 	}
 }
 
-void Popularitas(menu M[]){//UI NYA BANGGG
+void Popularitas(menu M[]){//UI NYA BANGGG ini banggg
 	int i, tempF = 0, tempD = 0;
 	
 	char topLeft = 201, topRight = 187, bottomLeft = 200, bottomRight = 188;
@@ -160,35 +160,73 @@ void Popularitas(menu M[]){//UI NYA BANGGG
 			tempD = i;
 		}
 	}
-	
+		
 	//Workspace
-	gotoxy(30, 10);
+	gotoxy(20, 10);
 	printf("%c", topLeft);//Baris Pertama
-    for(i=0; i<70; i++){
+    for(i=0; i<80; i++){
     	printf("%c", horizontal);
 	}
 	printf("%c\n", topRight);
+	printf("\e[20G%c \e[50GMakanan Paling Populer \e[101G%c", vertical, vertical);
 	
-	printf("\e[30G%c \e[55GMakanan Paling Populer \e[101G%c", vertical, vertical);
-	
-	gotoxy(30, 12);
+	gotoxy(20, 12);
 	printf("%c", threeWayToTheRight);//Baris Kedua
-    for(i=0; i<70; i++){
+    for(i=0; i<78; i++){
+    	if( i == 4 || i == 38){
+    		printf("%c", threeWayDown);
+		}
     	printf("%c", horizontal);
 	}
-	printf("%c", threeWayToTheLeft);
+	printf("%c\n", threeWayToTheLeft);
+	gotoxy(20, 13);
+	printf("%c Id \e[25G%c Nama Menu \e[60G%c Total Dijual \e[101G%c ", vertical, vertical, vertical, vertical);
+//	printf("%c Id \e[25G%c Nama Menu \e[60G%c Total Dijual %c ", vertical, M[tempF].idMenu, vertical, M[tempF].nama, vertical);
 	
+	gotoxy(20, 14);
+	printf("%c", threeWayToTheRight);//Baris Kedua
+    for(i=0; i<78; i++){
+    	if( i == 4 || i == 38){
+    		printf("%c", fourway);
+		}
+    	printf("%c", horizontal);
+	}
+	printf("%c\n", threeWayToTheLeft);
 	
+	gotoxy(20, 15);
+	printf("%c %d \e[25G%c %s \e[60G%c %d \e[101G%c ", vertical, M[tempF].idMenu, vertical, M[tempF].nama, vertical, M[tempF].dibeli, vertical);
 	
+	gotoxy(20, 16);
+	printf("%c", threeWayToTheRight);//Baris Kedua
+    for(i=0; i<78; i++){
+    	if( i == 4 || i == 38){
+    		printf("%c", fourway);
+		}
+    	printf("%c", horizontal);
+	}
+	printf("%c\n", threeWayToTheLeft);
+	
+	gotoxy(20, 17);
+	printf("%c %d \e[25G%c %s \e[60G%c %d \e[101G%c ", vertical, M[tempD].idMenu, vertical, M[tempD].nama, vertical, M[tempD].dibeli, vertical);
+	
+	gotoxy(20, 18);
+	printf("%c", bottomLeft);//Baris Kedua
+    for(i=0; i<78; i++){
+    	if( i == 4 || i == 38){
+    		printf("%c", threeWayUp);
+		}
+    	printf("%c", horizontal);
+	}
+	printf("%c\n", bottomRight);
 	
 	//Workspace
-	
-	printf("\n Makanan paling populer : %s", M[tempF].nama);
-	printf("\n Total Dijual           : %d", M[tempF].dibeli);
-	printf("\n");
-	printf("\n Minuman paling populer : %s", M[tempD].nama);
-	printf("\n Total Dijual           : %d", M[tempD].dibeli);
+//	printf("\n Makanan paling populer : %s", M[tempF].nama);
+//	printf("\n Total Dijual           : %d", M[tempF].dibeli);
+//	printf("\n");
+//	printf("\n Minuman paling populer : %s", M[tempD].nama);
+//	printf("\n Total Dijual           : %d", M[tempD].dibeli);
 }
+
 void showAdminMenu(int currentMenu) {
     int i;
     
@@ -235,18 +273,20 @@ void showAdminMenu(int currentMenu) {
 void editMenu(menu M[]){
 	int input;
 	menu temp;
-	printf("\nid menu: ");
+	printf("\nId menu: ");
 	fflush(stdin);scanf("%d", &input);
 	if(input>maxMenu || input<1){
+		setColor(31);
 		printf("\n\t[!] invalid");
+		setColor(37);
 		return;
 	}
 	temp.idMenu = input;
 	temp.dibeli = 0;
-	printf("\nnama menu : ");
+	printf("\nNama menu : ");
 	fflush(stdin);gets(temp.nama);
 	while(1){
-		printf("\nharga menu: ");
+		printf("\nHarga menu: ");
 		fflush(stdin);
 		if(scanf("%f", &temp.harga)==1){
 			break;
@@ -254,7 +294,7 @@ void editMenu(menu M[]){
 	}
 	printf("\nMakanan = F | Minuman = D");
 	while(1){
-		printf("\njenis menu: ");
+		printf("\nJenis menu: ");
 		fflush(stdin);scanf("%c", &temp.jenis);
 		if(temp.jenis == 'F' || temp.jenis == 'f'){
 			temp.jenis = 'F';
