@@ -97,7 +97,7 @@ void menuAdmin(menu M[]){
 	while(1){
 		int input;
 		int currentMenu=0;
-		int jumlahMenu=3;
+		int jumlahMenu=4;
 		
 		
 		
@@ -184,7 +184,7 @@ void showAdminMenu(int currentMenu) {
     printf("%c\n", 185); // Right T-junction
 
     // Menu items
-    for (i = 0; i < 3; i++) {
+    for (i = 0; i < 4; i++) {
         if (i == currentMenu) {
             // Highlight the selected item
             printf("\t\t\t\t\t%c", 186);
