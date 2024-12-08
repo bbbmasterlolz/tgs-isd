@@ -130,12 +130,35 @@ void menuAdmin(menu M[]){
 			case 1:
 				omzetPrint(M);
 			break;
-							
+
 			case 2:
+				Popularitas(M);
+			break;
+							
+			case 3:
 				return;
 		}
 		getch();
 	}
+}
+
+void Popularitas(menu M[]){
+	int i, tempF = 0, tempD = 0;
+	for(i=0;i<maxMenu;i++){
+		if(M[tempF].dibeli <= M[i].dibeli && M[i].jenis == 'F'){
+			tempF = i;
+		}
+	}
+	for(i=0;i<maxMenu;i++){
+		if(M[tempD].dibeli <= M[i].dibeli && M[i].jenis == 'D'){
+			tempD = i;
+		}
+	}
+	printf("\n Makanan paling populer : %s", M[tempF].nama);
+	printf("\n Total Dijual           : %d", M[tempF].dibeli);
+	printf("\n");
+	printf("\n Minuman paling populer : %s", M[tempD].nama);
+	printf("\n Total Dijual           : %d", M[tempD].dibeli);
 }
 
 void showAdminMenu(int currentMenu) {
@@ -143,7 +166,7 @@ void showAdminMenu(int currentMenu) {
     const char *menuItems[] = {
         "Edit Menu",
         "Omzet",
-//        "Popularitas",
+        "Popularitas",
         "Exit"
     };
 
@@ -295,38 +318,38 @@ void menuKasir(menu M[], Multilist *l, int *nomorNota, string filename, string f
 	    
 		switch(currentMenu){
 			
-			case 1: 
+			case 0: 
 				inputPesanan(M, &(*l), &(*nomorNota));
 			break;
 			
-			case 2:
+			case 1:
 				tambahPesanan(M, &(*l));	
 			break;
 			 
-			case 3:
+			case 2:
 				mergeNota(&(*l));
 			break;
 
-			case 4:
+			case 3:
 				splitBill(&(*l), &(*nomorNota));
 			break;
 
-			case 5:
+			case 4:
 				bayar(M, &(*l), filenameMenu);
 			break;
 			
-			case 6:
+			case 5:
 				if(isEmpty(*l))
 					printf("\n\t\t\t\t\t[!] Belum Ada Pesanan [!]");
 				else
 					writeToFileMultiList(*l,filename);
 			break;
 			
-			case 7:
+			case 6:
 				readFromFileMultiList(&(*l),filename);
 			break;
 			
-			case 0:
+			case 7:
 				return;
 			break;
 			
