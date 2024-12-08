@@ -13,3 +13,4 @@
 13 Sop Ayam | 25000.000000 0 F 
 14 Soto Ayam | 23000.000000 0 F 
 15 Ayam Penyet | 26000.000000 0 F 
+
