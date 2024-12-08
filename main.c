@@ -26,10 +26,12 @@ int main(int argc, char *argv[]) {
 			printf("\e[45G password: "); fflush(stdin); gets(temp.pass);
 			index_user = cekCred(users, temp);
 			if(index_user == -1){
-				printf("\n\e[45G [Gagal Login]");
+				printf("\n\e[42G[ !   Gagal Login   ! ]");
 				getch();
 			}else{
-				printf("\n\e[45G [Halo %s]", temp.user);
+				loginScenario();
+				
+				printf("\n\e[42G[>     Halo, %s !     <]", temp.user);
 				getch();
 				break;
 			}
