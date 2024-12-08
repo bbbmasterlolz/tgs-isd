@@ -257,6 +257,10 @@ void menuKasir(menu M[], Multilist *l, int *nomorNota, string filename){
 			case 3:
 				mergeNota(&(*l));
 			break;
+
+			case 4:
+				splitBill(&(*l), &(*nomorNota));
+			break;
 			
 			case 5:
 				if(isEmpty(*l))
@@ -300,6 +304,74 @@ void insertAllChild(Multilist l, AddressParent temp1, AddressParent temp2){
         }
         temp = temp->next;
     }
+}
+
+void splitBill(Multilist *l, int *nomorNota){
+	if(!isEmpty(*l)){
+		int nota, input, banyak;
+		bool exit = false;
+		(*nomorNota) = (*nomorNota) + 1;
+		string tanggalNota, cek;
+		makeTanggal(&tanggalNota);
+		system("cls");
+		printf("\n\t==[ Split Bill ]==");
+		printf("\nMasukkan Nomor Nota Yang Ingin Di Split : ");scanf("%d", &nota);
+		if(findParent(*l, nota)!=NULL){
+			AddressParent temp = findParent(*l, nota), notaBaru;
+			insertLastParent(&(*l), makeDataParent(*nomorNota, tanggalNota, temp->dataParent.nomorMeja, 0));
+			notaBaru = findParent(*l, *nomorNota);
+			do{
+				system("cls");
+				printParent(temp);
+				printf("\nMasukkan Nomor Menu Yang Ingin Pindah: ");scanf("%d", &input);
+				AddressChild tempC = findChild(temp, input);
+				if(tempC!=NULL){
+		        	printf("\nMasukkan Banyak yang ingin di pindah: ");scanf("%d", &banyak);
+		        	while(banyak<1 || banyak>tempC->dataChild.jumlah){
+		        		if(banyak<1){
+		        			printf("\n\t[!] Tidak Boleh Lebih Kecil Dari 1 [!]\n");
+						}else{
+							printf("\n\t[!] Tidak Boleh Lebih Banyak dari %d [!]\n", tempC->dataChild.jumlah);
+						}
+		        		printf("\nMasukkan Banyak yang ingin di pindah: ");scanf("%d", &banyak);
+					}
+					
+					if(findChild(notaBaru, input)==NULL){
+						insertLastChild((*l), notaBaru->dataParent.nomorNota, makeDataChild(tempC->dataChild.idMenu, tempC->dataChild.nama, banyak, tempC->dataChild.harga));
+					}else{
+						AddressChild tempC2 = findChild(notaBaru, input);
+						tempC2->dataChild.jumlah = tempC2->dataChild.jumlah + banyak;
+					}
+					if(banyak==tempC->dataChild.jumlah){
+						deleteAtChild(*l, nota, input);
+					}else{
+						tempC->dataChild.jumlah = tempC->dataChild.jumlah - banyak;
+					}
+					if(haveChild(temp)){
+						printf("\n\tApakah ada lagi yang ingin di Pindah [N/Y] ");fflush(stdin);gets(cek);
+						if(strcmpi(cek,"n")==0 ){
+							notaBaru->dataParent.Total = countTotalHarga(notaBaru);
+							printParent(notaBaru);
+							printParent(temp);
+							exit = true;
+						}
+					}else{
+						printf("\n\tSemua Pesanan Telah Dipindahkan");
+						notaBaru->dataParent.Total = countTotalHarga(notaBaru);
+						deleteAtParent(&(*l), temp->dataParent.nomorNota);
+						printParent(notaBaru);
+						exit = true;
+					}
+				}else{
+					printf("\n[!] Id tidak ditemukan [!]");
+				}getch();
+			}while(exit != true);
+		}else{
+			printf("\n[!] Mohon Maaf Nota Tidak Ditemukan[!]");
+		}
+	}else{
+		printf("\n[!] Mohon Maaf Belum Ada Pesanan [!]");
+	}
 }
 
 void mergeNota(Multilist *l){
