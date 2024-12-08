@@ -267,13 +267,12 @@ void readFromFile(string filename, menu M[]){
 }
 
 
-
-void menuKasir(menu M[], Multilist *l, int *nomorNota, string filename){
+void menuKasir(menu M[], Multilist *l, int *nomorNota, string filename, string filenameMenu){
 	while(1){
 	
 		int input;
-		int currentMenu = 0;
-		int jumlahMenu = 7;
+		int currentMenu = 1;
+		int jumlahMenu = 8;
 		
 		while(1){
 			system("cls"); // Clear screen
@@ -296,31 +295,38 @@ void menuKasir(menu M[], Multilist *l, int *nomorNota, string filename){
 	    
 		switch(currentMenu){
 			
-			case 0: 
+			case 1: 
 				inputPesanan(M, &(*l), &(*nomorNota));
 			break;
 			
-			case 1:
+			case 2:
 				tambahPesanan(M, &(*l));	
 			break;
 			 
-			case 2:
+			case 3:
 				mergeNota(&(*l));
 			break;
+
+			case 4:
+				splitBill(&(*l), &(*nomorNota));
+			break;
+
+			case 5:
+				bayar(M, &(*l), filenameMenu);
+			break;
 			
-			case 3:
+			case 6:
 				if(isEmpty(*l))
 					printf("\n\t\t\t\t\t[!] Belum Ada Pesanan [!]");
 				else
 					writeToFileMultiList(*l,filename);
 			break;
 			
-			case 4:
-				
+			case 7:
 				readFromFileMultiList(&(*l),filename);
 			break;
 			
-			case 6:
+			case 0:
 				return;
 			break;
 			
@@ -336,6 +342,7 @@ void showKasirMenu(int currentMenu){
         "Tambahan Pesanan",
         "Gabung Nota",
         "Split Bill",
+        "Bayar",
         "Save Data",
         "Load Data",
         "Exit"
@@ -358,7 +365,7 @@ void showKasirMenu(int currentMenu){
     printf("%c\n", 185); // Right T-junction
 
     // Menu items
-    for ( i = 0; i < 7; i++) {
+    for ( i = 0; i < 8; i++) {
         if (i == currentMenu) {
             // Highlight the selected item
             printf("\t\t\t\t\t  %c", 186);
@@ -376,6 +383,7 @@ void showKasirMenu(int currentMenu){
     for ( i = 0; i < 28; i++) printf("%c", 205); // Horizontal line
     printf("%c\n", 188); // Bottom-right corner
 }
+
 
 void bayar(menu M[], Multilist *l, string filename){
 	printAll(*l);
