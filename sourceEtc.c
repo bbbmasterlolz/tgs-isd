@@ -264,7 +264,7 @@ void menuKasir(menu M[], Multilist *l, int *nomorNota, string filename, string f
 			break;
 
 			case 5:
-				bayar(&(*l), &(*nomorNota), filenameMenu);
+				bayar(M, &(*l), filenameMenu);
 			break;
 			
 			case 6:
