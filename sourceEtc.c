@@ -96,39 +96,87 @@ int cekCred(cred users[], cred temp){
 void menuAdmin(menu M[]){
 	while(1){
 		int input;
-		system("cls");
-		 printf("\n\t\t\t\t\t      %c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c\n", 201, 205, 205, 205, 205, 205, 205, 205, 205, 205, 205, 205, 205, 205, 187);
-	    printf("\t\t\t\t\t-----%c  Admin Menu %c-----\n", 186, 186);
-	    printf("\t\t\t\t\t      %c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c\n", 200, 205, 205, 205, 205, 205, 205, 205, 205, 205, 205, 205, 205, 205, 188);
-	    printf("\n");
-	    
-
-	    printf("\t\t\t\t\t%c 1. Edit Menu           %c\n", 186, 186);
-	    printf("\t\t\t\t\t%c 2. Omzet               %c\n", 186, 186);
-	    printf("\t\t\t\t\t%c 3. Popularitas         %c\n", 186, 186);
-	    printf("\t\t\t\t\t%c 0. Exit                %c\n", 186, 186);
-	    printf("\n");
-	    
-
-	    printf("\t\t\t\t\t%cPlease select an option:%c", 186, 186);
-	    printf("\n\t\t\t\t\t  >>> ");
-	    scanf("%d", &input);
+		int currentMenu=0;
+		int jumlahMenu=3;
 		
-		switch(input){
-			case 1: 
+		
+		
+		while(1){
+			system("cls"); // Clear screen
+	        showAdminMenu(currentMenu);
+	
+	        input = _getch(); // Get key press
+	        if (input == 0 || input == 224) {
+	            // Arrow keys
+	            input = _getch();
+	            if (input == UP_ARROW) {
+	                currentMenu = (currentMenu - 1 + jumlahMenu) % jumlahMenu;
+	            } else if (input == DOWN_ARROW) {
+	                currentMenu = (currentMenu + 1) % jumlahMenu;
+	            }
+	        } else if (input == ENTER_KEY) {
+	            // Enter key pressed
+	            break;
+	        }
+	    }
+    
+		
+		switch(currentMenu){
+			case 0: 
 				menuPrint(M);
 				editMenu(M);
 			break;
 			
-			case 2:
+			case 1:
 				omzetPrint(M);
 			break;
 							
-			case 0:
+			case 2:
 				return;
 		}
 		getch();
 	}
+}
+void showAdminMenu(int currentMenu) {
+    int i;
+    const char *menuItems[] = {
+        "Edit Menu",
+        "Omzet",
+//        "Popularitas",
+        "Exit"
+    };
+
+    // Draw top border
+    printf("\t\t\t\t\t%c", 201); // Top-left corner
+    for (i = 0; i < 28; i++) printf("%c", 205); // Horizontal line
+    printf("%c\n", 187); // Top-right corner
+
+    // Title row
+    printf("\t\t\t\t\t%c       Admin Menu           %c\n", 186, 186);
+
+    // Draw title separator
+    printf("\t\t\t\t\t%c", 204); // Left T-junction
+    for (i = 0; i < 28; i++) printf("%c", 205); // Horizontal line
+    printf("%c\n", 185); // Right T-junction
+
+    // Menu items
+    for (i = 0; i < 3; i++) {
+        if (i == currentMenu) {
+            // Highlight the selected item
+            printf("\t\t\t\t\t%c", 186);
+            setColor(32);
+            printf(" > %-24s ", menuItems[i]);
+            resetColor();
+            printf("%c\n", 186);
+        } else {
+            printf("\t\t\t\t\t%c    %-23s %c\n", 186, menuItems[i], 186);
+        }
+    }
+
+    // Draw bottom border
+    printf("\t\t\t\t\t%c", 200); // Bottom-left corner
+    for (i = 0; i < 28; i++) printf("%c", 205); // Horizontal line
+    printf("%c\n", 188); // Bottom-right corner
 }
 
 void editMenu(menu M[]){
@@ -221,56 +269,57 @@ void readFromFile(string filename, menu M[]){
 
 void menuKasir(menu M[], Multilist *l, int *nomorNota, string filename){
 	while(1){
+	
 		int input;
-		system("cls");
-
-	    printf("\t\t\t\t\t      %c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c\n", 201, 205, 205, 205, 205, 205, 205, 205, 205, 205, 205, 205, 205, 205, 187);
-	    printf("\t\t\t\t\t -----%c  Kasir Menu %c-----\n", 186, 186);
-	    printf("\t\t\t\t\t      %c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c\n", 200, 205, 205, 205, 205, 205, 205, 205, 205, 205, 205, 205, 205, 205, 188);
-	    printf("\n");
-	    
-
-	    printf("  \t\t\t\t\t%c 1. Input Pesanan        %c\n", 186, 186);
-	    printf("  \t\t\t\t\t%c 2. Tambahan Pesanan     %c\n", 186, 186);
-	    printf("  \t\t\t\t\t%c 3. Gabung Nota          %c\n", 186, 186);
-	    printf("  \t\t\t\t\t%c 4. Split Bill           %c\n", 186, 186);
-	    printf("  \t\t\t\t\t%c 5. Save Data            %c\n", 186, 186);
-	    printf("  \t\t\t\t\t%c 6. Load Data            %c\n", 186, 186);
-	    printf("  \t\t\t\t\t%c 0. Exit                 %c\n", 186, 186);
-	    printf("\n");
-	    
-
-	    printf("  \t\t\t\t\t%c Please select an option:%c", 186, 186);
-	    printf("\n  \t\t\t\t\t>>> ");fflush(stdin);scanf("%d",&input);
-
-
+		int currentMenu = 0;
+		int jumlahMenu = 6;
 		
-		switch(input){
-			case 1: 
+		while(1){
+			system("cls"); // Clear screen
+	        showKasirMenu(currentMenu);
+	
+	        input = _getch(); // Get key press
+	        if (input == 0 || input == 224) {
+	            // Arrow keys
+	            input = _getch();
+	            if (input == UP_ARROW) {
+	                currentMenu = (currentMenu - 1 + jumlahMenu) % jumlahMenu;
+	            } else if (input == DOWN_ARROW) {
+	                currentMenu = (currentMenu + 1) % jumlahMenu;
+	            }
+	        } else if (input == ENTER_KEY) {
+	            // Enter key pressed
+	            break;
+	        }
+	    }
+	    
+		switch(currentMenu){
+			
+			case 0: 
 				inputPesanan(M, &(*l), &(*nomorNota));
 			break;
 			
-			case 2:
+			case 1:
 				tambahPesanan(M, &(*l));	
 			break;
 			 
-			case 3:
+			case 2:
 				mergeNota(&(*l));
 			break;
 			
-			case 5:
+			case 3:
 				if(isEmpty(*l))
 					printf("\n\t\t\t\t\t[!] Belum Ada Pesanan [!]");
 				else
 					writeToFileMultiList(*l,filename);
 			break;
 			
-			case 6:
+			case 4:
 				
 				readFromFileMultiList(&(*l),filename);
 			break;
 			
-			case 0:
+			case 5:
 				return;
 			break;
 			
@@ -278,6 +327,55 @@ void menuKasir(menu M[], Multilist *l, int *nomorNota, string filename){
 		getch();
 	}
 }
+
+void showKasirMenu(int currentMenu){
+	int i;
+	const char *menuItems[] = {
+        "Input Pesanan",
+        "Tambahan Pesanan",
+        "Gabung Nota",
+//        "4. Split Bill",
+        "Save Data",
+        "Load Data",
+        "Exit"
+    };
+
+
+
+	
+    // Draw top border
+    printf("\t\t\t\t\t  %c", 201); // Top-left corner
+    for ( i = 0; i < 28; i++) printf("%c", 205); // Horizontal line
+    printf("%c\n", 187); // Top-right corner
+
+    // Title row
+    printf("\t\t\t\t\t  %c       Menu Kasir           %c\n", 186, 186);
+
+    // Draw title separator
+    printf("\t\t\t\t\t  %c", 204); // Left T-junction
+    for ( i = 0; i < 28; i++) printf("%c", 205); // Horizontal line
+    printf("%c\n", 185); // Right T-junction
+
+    // Menu items
+    for ( i = 0; i < 6; i++) {
+        if (i == currentMenu) {
+            // Highlight the selected item
+            printf("\t\t\t\t\t  %c", 186);
+            setColor(32);
+            printf(" > %-24s ", menuItems[i]);
+            resetColor();
+            printf("%c\n", 186);
+        } else {
+            printf("\t\t\t\t\t  %c    %-23s %c\n", 186, menuItems[i], 186);
+        }
+    }
+
+    // Draw bottom border
+    printf("\t\t\t\t\t  %c", 200); // Bottom-left corner
+    for ( i = 0; i < 28; i++) printf("%c", 205); // Horizontal line
+    printf("%c\n", 188); // Bottom-right corner
+}
+    
 
 void insertAllChild(Multilist l, AddressParent temp1, AddressParent temp2){
     AddressChild temp = temp2->firstChild;
@@ -634,6 +732,10 @@ void readFromFileMultiList(Multilist* list, const char* filename) {
 
 void setColor(int color) {
     printf("\033[0;%dm", color); // ANSI escape code untuk warna
+}
+
+void setColorAndBackground(int foreground, int background) {
+    printf("\033[%d;%dm", foreground, background + 40);
 }
 
 void resetColor() {

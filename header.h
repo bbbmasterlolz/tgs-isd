@@ -8,6 +8,10 @@
 #define maxMenu 15
 #define maxUser 6
 
+#define UP_ARROW 72//kode untuk keyboard key
+#define DOWN_ARROW 80
+#define ENTER_KEY 13
+
 typedef char string[200];
 typedef char sBuff[20000];
 
@@ -87,6 +91,9 @@ int findIdMenu(menu M[],int input);
 int findNamaMenu(menu M[], string input);
 int findMejaKosong(Multilist l);
 
+void showKasirMenu(int currentMenu);
+void showAdminMenu(int currentMenu);
+
 //source Parent
 void createEmpty(Multilist *L);
 
@@ -134,4 +141,5 @@ void readFromFileMultiList(Multilist* list, const char* filename);
 void setColor(int color);//set colour sesuai parameter
 void resetColor();
 void loadingBar();
+void setColorAndBackground(int foreground, int background);
 
