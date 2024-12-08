@@ -469,7 +469,7 @@ void menuKasir(menu M[], Multilist *l, int *nomorNota, string filename, string f
 	
 		int input;
 		int currentMenu = 0;
-		int jumlahMenu = 8;
+		int jumlahMenu = 9;
 		
 		while(1){
 			system("cls"); // Clear screen
@@ -515,11 +515,20 @@ void menuKasir(menu M[], Multilist *l, int *nomorNota, string filename, string f
 			case 5:
 				if(isEmpty(*l))
 					printf("\n\t\t\t\t\t[!] Belum Ada Pesanan [!]");
+				else{
+					system("cls");
+					printAllParent(*l);
+				}
+			break;
+			
+			case 6:
+				if(isEmpty(*l))
+					printf("\n\t\t\t\t\t[!] Belum Ada Pesanan [!]");
 				else
 					writeToFileMultiList(*l,filename);
 			break;
 			
-			case 6:
+			case 7:
 				if(!isFileEmpty(filename)){
 					deleteAllParent(&(*l));
     				createEmpty(&(*l));
@@ -529,7 +538,7 @@ void menuKasir(menu M[], Multilist *l, int *nomorNota, string filename, string f
 				}
 			break;
 			
-			case 7:
+			case 8:
 				return;
 			break;
 			
@@ -546,6 +555,7 @@ void showKasirMenu(int currentMenu){
         "Gabung Nota",
         "Split Bill",
         "Bayar",
+        "Tampil Nota",
         "Save Data",
         "Load Data",
         "Exit"
@@ -568,7 +578,7 @@ void showKasirMenu(int currentMenu){
     printf("%c\n", 185); // Right T-junction
 
     // Menu items
-    for ( i = 0; i < 8; i++) {
+    for ( i = 0; i < 9; i++) {
         if (i == currentMenu) {
             // Highlight the selected item
             printf("\t\t\t\t\t  %c", 186);
@@ -611,10 +621,14 @@ void bayar(menu M[], Multilist *l, string filename){
 				printf("Kembali     : Rp %.2f\n", Dibayar - temp->dataParent.Total);
 				break;
 			}else if(Dibayar == 0){
+				setColor(31);
 				printf("\n\t Cancel");
+				resetColor();
 				return;
 			}else{
+				setColor(31);
 				printf("\n\t Uang tidak cukup");
+				resetColor();
 			}
 		}
 		
@@ -692,9 +706,13 @@ void splitBill(Multilist *l, int *nomorNota){
 		        	printf("\nMasukkan Banyak yang ingin di pindah: ");fflush(stdin);scanf("%d", &banyak);
 		        	while(banyak<1 || banyak>tempC->dataChild.jumlah){
 		        		if(banyak<1){
+		        			setColor(31);
 		        			printf("\n\t[!] Tidak Boleh Lebih Kecil Dari 1 [!]\n");
+							resetColor();
 						}else{
+							setColor(31);
 							printf("\n\t[!] Tidak Boleh Lebih Banyak dari %d [!]\n", tempC->dataChild.jumlah);
+							resetColor();
 						}
 		        		printf("\nMasukkan Banyak yang ingin di pindah: ");fflush(stdin);scanf("%d", &banyak);
 					}
@@ -865,7 +883,9 @@ void inputPesanan(menu M[], Multilist *l, int *nomorNota){
 	        if(index!=-1){
 	        	printf("\n\t\t\t\t\tMasukkan Banyak Pesanan : ");fflush(stdin);scanf("%d", &banyak);
 	        	while(banyak<1){
+	        		setColor(31);
 	        		printf("\n\t\t\t\t\t[!] Tidak Boleh Lebih Kecil Dari 1 [!]\n");
+					resetColor();
 	        		printf("\nMasukkan Banyak Pesanan : ");fflush(stdin);scanf("%d", &banyak);
 				}
 				if(findChild(findParent(*l, *nomorNota), M[index].idMenu)==NULL){
