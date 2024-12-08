@@ -39,7 +39,7 @@ int main(int argc, char *argv[]) {
 			menuAdmin(M);
 			saveToFile(filename, M);
 		}else{
-			menuKasir(M, &L, &nomorNota, saveMultiList);
+			menuKasir(M, &L, &nomorNota, saveMultiList, filename);
 		}
 	}
 	return 0;
