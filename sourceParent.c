@@ -94,7 +94,7 @@ void deleteAtParent(Multilist *L, int nomorNota){
 	
 	if(!isEmpty(*L)){
 		if(temp->dataParent.nomorNota == nomorNota){
-			deleteFirstParent(L);
+			deleteFirstParent(&(*L));
 		}else{
 			while(temp->next != NULL){
 				if(temp->next->dataParent.nomorNota == nomorNota){
