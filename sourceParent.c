@@ -131,6 +131,16 @@ void deleteLastParent(Multilist *L){
 	}
 }
 
+void deleteAllParent(Multilist *L) {
+    AddressParent temp;
+
+    while (L->firstParent != NULL) {
+        temp = L->firstParent;    
+        deleteAllChild(temp); 
+        deleteFirstParent(L); 
+    }
+}
+
 void deleteAllChild(AddressParent parent){
 	AddressChild temp;
 	
@@ -142,25 +152,69 @@ void deleteAllChild(AddressParent parent){
 	}
 }
 
-
-
 void printParent(AddressParent parent){
 	int i;
+	char topLeft = 201, topRight = 187, bottomLeft = 200, bottomRight = 188;
+    char horizontal = 205, vertical = 186;
+    char threeWayToTheRight = 204, threeWayToTheLeft = 185, threeWayUp = 202, threeWayDown = 203;
+	char fourway = 206;
 	parent->dataParent.Total = countTotalHarga(parent);
 	
-    printf("\n==============================\n");
-    printf("          NOTA PEMBELIAN\n");
-    printf("==============================\n");
-    printf("Nomor Nota  : %d\n", parent->dataParent.nomorNota);
-    printf("Tanggal     : %s\n", parent->dataParent.tanggalNota);
-    printf("Nomor Meja  : %d\n", parent->dataParent.nomorMeja);
-    printf("------------------------------\n");
-    printf("| No | Nama Menu       | Harga Satuan (Rp) | Jumlah | Subtotal (Rp) |\n");
-    printf("---------------------------------------------------------------\n");
+    printf("\n");
+    printf("%c", topLeft);
+    for(i=0; i<70; i++){
+    	printf("%c", horizontal);
+	}
+	
+	printf("%c\n", topRight);
+    printf("%c\e[30GNOTA PEMBELIAN \e[72G%c\n", vertical, vertical, vertical);
+    
+    printf("%c", threeWayToTheRight);
+    for(i=0; i<70; i++){
+    	printf("%c", horizontal);
+	}
+    printf("%c\n", threeWayToTheLeft);
+
+    printf("%c Nomor Nota  : %d \e[72G%c \n", vertical, parent->dataParent.nomorNota);
+    printf("%c Tanggal     : %s \e[72G%c \n", vertical, parent->dataParent.tanggalNota);
+    printf("%c Nomor Meja  : %d \e[72G%c \n", vertical, parent->dataParent.nomorMeja);
+    
+    printf("%c", threeWayToTheRight);
+    for(i=0; i<65; i++){
+    	if(i == 4 || i == 21 ||  i == 40 || i == 48 ){
+    		printf("%c", threeWayDown);
+		}
+    	printf("%c", horizontal);
+	}
+	printf("%c\n", threeWayToTheLeft);
+	
+    printf("%c No %c Nama Menu       %c Harga Satuan (Rp) %c Jumlah %c Subtotal (Rp) \e[72G%c\n", vertical, vertical, vertical, vertical, vertical, vertical);    
+    printf("%c", threeWayToTheRight);
+    for(i=0; i<70; i++){
+    	printf("%c", horizontal);
+	}
+	printf("%c\n", threeWayToTheLeft);
+	
+	
     printAllChild(parent);
-    printf("---------------------------------------------------------------\n");
-    printf("Total Harga : Rp %.2f\n", parent->dataParent.Total);
+    for(i=0; i<70; i++){
+    	printf("%c", horizontal);
+	}
+    printf("%c \e[36GTotal Harga : Rp %.2f\n", vertical,  parent->dataParent.Total);
+    printf("%c", threeWayToTheRight);
+    for(i=0; i<70; i++){
+    	printf("%c", horizontal);
+	}
+	printf("%c\n", threeWayToTheLeft);
+    
     printf("==============================\n");
+    
+	printf("\n\t1");
+    printf("\n\t\t2");
+    printf("\n\t\t\t3");
+    printf("\n\t\t\t\t4");
+    printf("\n\t\t\t\t\t5");
+    printf("\n\t\t\t\t\t\t6");
 }
 
 void printAllParent(Multilist L){
@@ -185,5 +239,4 @@ void printAll(Multilist L){
 		temp = temp->next;
 	}
 }
-
 
