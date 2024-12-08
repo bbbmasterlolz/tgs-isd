@@ -94,6 +94,8 @@ int findMejaKosong(Multilist l);
 void showKasirMenu(int currentMenu);
 void showAdminMenu(int currentMenu);
 
+void catat(menu M[], DataChild D);
+
 //source Parent
 void createEmpty(Multilist *L);
 
@@ -141,5 +143,5 @@ void readFromFileMultiList(Multilist* list, const char* filename);
 void setColor(int color);//set colour sesuai parameter
 void resetColor();
 void loadingBar();
-void setColorAndBackground(int foreground, int background);
+
 
