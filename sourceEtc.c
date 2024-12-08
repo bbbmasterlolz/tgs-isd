@@ -346,6 +346,7 @@ void tambahPesanan(menu M[], Multilist *l){
 	if(!isEmpty(*l)){
 		string input, tanggalNota;
 		int index, banyak, cariNota;
+		bool exit = false;
 		printAll(*l);
 		printf("\n\t\t\t\t\tMasukkan Nomor Nota Yang Ingin Ditambah : ");scanf("%d", &cariNota);
 		if(findParent(*l, cariNota)!=NULL){
@@ -370,20 +371,21 @@ void tambahPesanan(menu M[], Multilist *l){
 					if(findChild(temp, M[index].idMenu)==NULL){
 						insertLastChild((*l), temp->dataParent.nomorNota, makeDataChild(M[index].idMenu, M[index].nama, banyak, M[index].harga));
 					}else{
-						temp->firstChild->dataChild.jumlah += banyak;
+						AddressChild tempC = findChild(temp, M[index].idMenu);
+						tempC->dataChild.jumlah = tempC->dataChild.jumlah  + banyak;
 					}
-					printf("\n\t\t\t\t\tApakah ada lagi yang ingin di pesan [N/Y] ");scanf("%s", input);
+					printf("\n\t\t\t\t\tApakah ada lagi yang ingin di pesan [N/Y] ");fflush(stdin); gets(input);
 					if(strcmpi(input,"n")==0){
 						findParent(*l, temp->dataParent.nomorNota)->dataParent.Total = countTotalHarga(findParent(*l, temp->dataParent.nomorNota));
 						printParent(findParent(*l, temp->dataParent.nomorNota));
-						strcpy(input,"0");
+						exit = true;
 					}
 				}else{
 					setColor(31);
 					printf("\n\t\t\t\t\t[!] Nama Atau Id tidak ditemukan [!]");
 					resetColor();
 				}getch();
-			}while(strcmp(input, "0")!=0);
+			}while(exit!=true);
 		}else{
 			setColor(31);
 			printf("\n\t\t\t\t\t[!] Mohon Maaf Nota Tidak Ditemukan[!]");
@@ -401,6 +403,7 @@ void tambahPesanan(menu M[], Multilist *l){
 void inputPesanan(menu M[], Multilist *l, int *nomorNota){
 	if(findMejaKosong(*l)!=-1){
 		string input, tanggalNota;
+		bool exit=false;
 		int index, banyak;
 		(*nomorNota) = (*nomorNota) + 1;
 		makeTanggal(&tanggalNota);
@@ -409,7 +412,7 @@ void inputPesanan(menu M[], Multilist *l, int *nomorNota){
 			system("cls");
 			menuPrint(M);
 			fflush(stdin);
-			printf("\n\t\t\t\t\tMasukkan Nomor atau Nama Menu Yang Ingin Di Pesan: ");gets(input);
+			printf("\n\t\t\t\t\tMasukkan Nomor atau Nama Menu Yang Ingin Di Pesan: ");fflush(stdin); gets(input);
 			if(sscanf(input, "%d", &index) == 1){
 	            index = findIdMenu(M,index);
 	        }else{
@@ -426,18 +429,18 @@ void inputPesanan(menu M[], Multilist *l, int *nomorNota){
 				}else{
 					findChild(findParent(*l, *nomorNota), M[index].idMenu)->dataChild.jumlah += banyak;
 				}
-				printf("\n\t\t\t\t\tApakah ada lagi yang ingin di pesan [N/Y] ");scanf("%s", input);
+				printf("\n\t\t\t\t\tApakah ada lagi yang ingin di pesan [N/Y] ");fflush(stdin); gets(input);
 				if(strcmpi(input,"n")==0){
 					findParent(*l, *nomorNota)->dataParent.Total = countTotalHarga(findParent(*l, *nomorNota));
 					printParent(findParent(*l, *nomorNota));
-					strcpy(input,"0");
+					exit=true;
 				}
 			}else{
 				setColor(31);
 				printf("\n\t\t\t\t\t[!] Nama Atau Id tidak ditemukan [!]");
 				resetColor();
 			}getch();
-		}while(strcmp(input, "0")!=0);
+		}while(exit != true);
 	}else{
 		setColor(31);
 		printf("\n\t\t\t\t\t[!] Mohon Maaf Tidak Ada Meja Yang Tersedia [!]");
