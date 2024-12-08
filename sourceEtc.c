@@ -234,8 +234,9 @@ void menuKasir(menu M[], Multilist *l, int *nomorNota, string filename, string f
 	    printf("  \t\t\t\t\t%c 2. Tambahan Pesanan     %c\n", 186, 186);
 	    printf("  \t\t\t\t\t%c 3. Gabung Nota          %c\n", 186, 186);
 	    printf("  \t\t\t\t\t%c 4. Split Bill           %c\n", 186, 186);
-	    printf("  \t\t\t\t\t%c 5. Save Data            %c\n", 186, 186);
-	    printf("  \t\t\t\t\t%c 6. Load Data            %c\n", 186, 186);
+	    printf("  \t\t\t\t\t%c 5. Bayar                %c\n", 186, 186);
+	    printf("  \t\t\t\t\t%c 6. Save Data            %c\n", 186, 186);
+	    printf("  \t\t\t\t\t%c 7. Load Data            %c\n", 186, 186);
 	    printf("  \t\t\t\t\t%c 0. Exit                 %c\n", 186, 186);
 	    printf("\n");
 	    
