@@ -264,17 +264,6 @@ void menuPrint(menu M[]){
 	}
 }
 
-
-void menuPrint(menu M[]){
-	int i;
-	printf("\nidMenu \e[10G harga \e[25G nama\n");
-	for(i=0;i<maxMenu;i++){
-		printf("%d \e[10G %.2f", M[i].idMenu, M[i].harga);
-		printf("\e[25G");
-		printf(" %s \n",M[i].nama);
-	}
-}
-
 void saveToFile(string filename, menu M[]) {
 	int i;
 	
